@@ -9,7 +9,7 @@ n8n is an open-source workflow automation tool
       node -v
       npm -v
 
-## Step 1.2 : Create a Systemd Service File
+### Step 1.2 : Create a Systemd Service File
       sudo nano /etc/systemd/system/n8n.service
 
       [Unit]
@@ -26,7 +26,7 @@ n8n is an open-source workflow automation tool
       [Install]
       WantedBy=multi-user.target\
 
-      #Enable & Start the Service
+### Step 1.3 :Enable & Start the Service
       sudo systemctl enable n8n
       sudo systemctl start n8n
       sudo systemctl status n8n
