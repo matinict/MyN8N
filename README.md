@@ -1,7 +1,7 @@
 # n8n
 n8n is an open-source workflow automation tool
 
-##Step 1: Install Node.js & npm
+## Step 1: Install Node.js & npm
 
       sudo apt update && sudo apt upgrade -y
       curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -9,7 +9,7 @@ n8n is an open-source workflow automation tool
       node -v
       npm -v
 
-      #Create a Systemd Service File
+## Step 1.2 : Create a Systemd Service File
       sudo nano /etc/systemd/system/n8n.service
 
       [Unit]
