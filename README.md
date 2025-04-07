@@ -46,3 +46,14 @@ n8n is an open-source workflow automation tool
 ## Step 3: Start n8n Locally
 
     n8n
+
+## Reinstall n8n properly
+
+      sudo rm /usr/local/bin/n8n
+
+
+
+      
+
+## Ref
+========
