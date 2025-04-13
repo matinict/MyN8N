@@ -51,6 +51,9 @@ n8n is an open-source workflow automation tool
 ## Step 3: Start n8n Locally
 
     n8n
+## Permissions 0664 for n8n settings
+    chmod 600 /home/matin/.n8n/config
+
 
 ## Reinstall n8n properly
 
