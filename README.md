@@ -52,6 +52,12 @@ n8n is an open-source workflow automation tool
       sudo rm /usr/local/bin/n8n
 
 
+## Problem 
+
+### Problem 1
+      sudo systemctl start n8n
+      Job for n8n.service failed because of unavailable resources or another system error.
+      See "systemctl status n8n.service" and "journalctl -xeu n8n.service" for details.
 
       
 
