@@ -34,6 +34,11 @@ n8n is an open-source workflow automation tool
       sudo systemctl daemon-reload
       sudo systemctl enable n8n
       sudo systemctl start n8n
+      
+      #Run localy
+      n8n      
+      #Editor is now accessible via:
+      #http://localhost:5678       
 
 
 
@@ -58,6 +63,8 @@ n8n is an open-source workflow automation tool
       sudo systemctl start n8n
       Job for n8n.service failed because of unavailable resources or another system error.
       See "systemctl status n8n.service" and "journalctl -xeu n8n.service" for details.
+
+      Solution:      n8n
 
       
 
