@@ -11,6 +11,8 @@ n8n is an open-source workflow automation tool
       sudo apt update && sudo apt upgrade -y
       curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
       sudo apt-get install -y nodejs
+      npm install -g npm@11.3.0
+
 
       node -v
       npm -v
