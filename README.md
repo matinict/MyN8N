@@ -1,6 +1,11 @@
 # n8n
 n8n is an open-source workflow automation tool
 
+      n8n --version
+      node -v
+      npm -v
+
+
 ## Step 1.1: Install Node.js & npm
 
       sudo apt update && sudo apt upgrade -y
