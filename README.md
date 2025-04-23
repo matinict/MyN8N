@@ -67,6 +67,7 @@ n8n is an open-source workflow automation tool
       sudo apt autoremove
       nvm deactivate
       node -v
+      npm -v
       nvm list
       nvm uninstall 20.19.0
       rm -rf ~/.nvm
