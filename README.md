@@ -76,7 +76,11 @@ n8n is an open-source workflow automation tool
 
 ## Problem 
 
-### Problem 1
+## Problem 1- Permissions 0664 for n8n settings
+     chmod 600 /home/matin/.n8n/config
+ 
+
+### Problem 2:
       sudo systemctl start n8n
       Job for n8n.service failed because of unavailable resources or another system error.
       See "systemctl status n8n.service" and "journalctl -xeu n8n.service" for details.
