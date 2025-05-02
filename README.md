@@ -38,8 +38,33 @@ n8n is an open-source workflow automation tool
       sudo systemctl daemon-reload
       sudo systemctl enable n8n
       sudo systemctl start n8n
-      
-         
+
+      sudo nano /etc/systemd/system/n8n.service
+            [Unit]
+            Description=n8n Workflow Automation
+            After=network.target
+            
+            [Service]
+            Type=simple
+            User=matin
+            Environment=PATH=/usr/bin:/usr/local/bin
+            Environment=NODE_ENV=production
+            Environment=N8N_RUNNERS_ENABLED=true
+            WorkingDirectory=/home/matin
+            ExecStart=/usr/bin/env n8n
+            Restart=always
+            RestartSec=10
+            
+            [Install]
+            WantedBy=multi-user.target
+
+      sudo systemctl daemon-reexec
+      sudo systemctl daemon-reload
+      sudo systemctl restart n8n
+      sudo systemctl status n8n
+      sudo systemctl enable n8n
+
+  
 
 
 
