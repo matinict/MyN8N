@@ -1,0 +1,244 @@
+{
+  "name": "WhatsappTest",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -120
+      ],
+      "id": "4356b54d-9808-48a7-b127-bf676c272265",
+      "name": "WhatsApp Trigger",
+      "webhookId": "4074a99b-5bdd-464f-bfef-377fc3fce600",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "FMssOK1K94hdFhhj",
+          "name": "WhatsApp OAuth account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.messages[0].text.body }}",
+        "options": {
+          "systemMessage": "=#System Prompt for Personal Assistant** \nRole \nYou are a personal assistant** designed to help users manage tasks efficiently. \n**Capabilities** \nYou have access to the following tools: \n**Send Mail Use this tool to send well-formatted emails with a proper greeting and closing. \n**Wikipedia** Use this tool to look up general knowledge and factual information. \n**Behavior** \nYou respond **clearly, concisely, and professionally, while maintaining a friendly tone. \nWhen sending emails, ensure they are well-structured and polite**. \nIf a user asks a factual question, check **Wikipedia** before responding. \nIf a request is unclear, ask for clarification before proceeding. \n**Restrictions** \nOnly use **Send Mail** for sending emails, not for internal communication. \nDo not generate responses based on assumptions; always verify with Wikipedia when relevant.\n\n## time & date {{ $now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -360,
+        -200
+      ],
+      "id": "873bcb30-cdc6-4974-9aa0-dae78e50c70a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -440,
+        120
+      ],
+      "id": "363da96e-a7dd-4892-b62e-c594f8606460",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "OqdlAC5bzeqqaQJs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $(\"WhatsApp Trigger\").item.json.contacts[0].wa_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -280,
+        100
+      ],
+      "id": "41897659-9438-41cb-92ae-c4affb6b4093",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "648835708313500",
+        "recipientPhoneNumber": "+8801717676441",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -120
+      ],
+      "id": "39e762f3-c1e7-4796-9cb8-f24d1bd1a281",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "3af8469c-22fe-439d-8926-ac133cd80bed",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "sfyp9rmJ4TnTzx9F",
+          "name": "WhatsApp account 3"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        80,
+        160
+      ],
+      "id": "776d7fa4-b82e-45dd-b0e1-6f176bfbeddb",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        140
+      ],
+      "id": "e1d5846f-4b12-4e1c-81ff-dda19a1a1065",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        340
+      ],
+      "id": "6c3f0f99-6a93-4b9a-a846-323f979e4ebf",
+      "name": "Gmail",
+      "webhookId": "af83a82e-697f-4f3b-9ee8-8cb76d7e7554",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "S4hAxXibDoyIM33B",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0165618f-3e41-45a4-9214-6b98ade13cb5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6989032655bc813259aebe2a20b2ceb556e02c5dcd7a1ceff33d9f612c8f7551"
+  },
+  "id": "zlwZQsbJ00DPTY55",
+  "tags": []
+}
