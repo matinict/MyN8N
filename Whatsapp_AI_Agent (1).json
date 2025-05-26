@@ -1,0 +1,460 @@
+{
+  "name": "Whatsapp_AI_Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.messages[0].text }}",
+        "options": {
+          "systemMessage": "below are the categories names remember it\n0: Ideal Client\n1546995680: Program Pricing\n429877479: Our Program & Offer\n791445133: General Questions\n373496874: About Anthony & BIO\n372229936: Facebook Ads\n1522121136: Lorraine letter\n200520532: Online Wisdom Messages\n1277567773: Webinar Creation\n1823430946: Marketing Anthony Gardiner. Systems For Success\n1148064433: Core Values\n2082820578: AI Team Members\n\nnow if got ideal client: test question so remember ideal client is category and other part e.g. test question is query\n\n0\nIdeal Client\ntest question\n\nLorraine letter: why this is random extract me category and query\n\n1522121136\nLorraine letter\nwhy this is random\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -1060,
+        200
+      ],
+      "id": "2dc2950b-6b1a-4612-8c24-2cbbb0253228",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1180,
+        400
+      ],
+      "id": "d7f6cee5-8f7a-4007-b1ac-6a10b8b948af",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "zHO6XatU7bilHoFh",
+          "name": "OpenAiTelegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Msg').item.json.contacts[0].wa_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1000,
+        420
+      ],
+      "id": "a8bc1ced-5aaf-4ad1-ab9c-62c8c252d54c",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1380,
+        220
+      ],
+      "id": "63498d63-ce7e-4ccd-b936-9a2d05c7866b",
+      "name": "WhatsApp Msg",
+      "webhookId": "d0e1597a-3390-4c05-88d6-c9df69ba5921",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "hsHt5sc9yPuIcDQy",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "assistant",
+        "assistantId": {
+          "__rl": true,
+          "value": "asst_QXJlNwRMNHqjmmDlLnTFhdsz",
+          "mode": "list",
+          "cachedResultName": "openai"
+        },
+        "prompt": "define",
+        "text": "=Identity:\nYou are an AI assistant for Anthony lifting solution. Your role is to help customers by answering Lifting Equipment, Where our lifting system available, how many lifting services we are offering. Use only Lifting Equipment's knowledge base for answer.\n\nStyle Guardrails:\n-Be concise: Keep responses short, direct and informative\n-Be Engaging: Guide customers naturally(e.g. \"Would you also like to know about our services?\")\n-Get Clarity: If a request is unclear, ask a polite clarifying question.\n-Avoid repetition: Vary your phrasing to keep conversation fresh\n\nConversation flow breakdown:\n1. Introduction:\nExample: \"Hi, Thanks you for reaching out Anthony's Lifting solution. How can i help you today?\"\n\n2. Answer Lifting Equipment:\n-Always search the questions from knowledge base for accurate and complete but concise answer and call the remove_annotations tool to clean the response. New assume or make answer instead consider searching the knowledge base.\n\n3. If the query is vague:\n-Politely ask for the clarification.\nExample: \"Could you clarify if you're asking about the lifting solution at Anthony Lifting Equipment.\n\n4. If query is out of scope:\nApologize and send query to ai agent.\n\n5. Closure:\n- Offer further assistance\nExample: \"IS there anything else i can help you with today?\"\n- If not: \"Thank you reaching out Anthony Lifting Equipment. Have a wonderful day\"\n\nTool usage:\n- After generating any response always run the response through the remove_annotations function to clean it before send it to the customer. Strictly call this tool before responding to the customer.\n\nDate today: {{ $now }}\n\nUser's Input to respond to: \n\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -660,
+        140
+      ],
+      "id": "1e089eb3-8432-4775-a7f7-7d9986551b0b",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "zHO6XatU7bilHoFh",
+          "name": "OpenAiTelegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d127a60d-6460-4077-a72d-1c1fb5975571",
+              "name": "question",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "63f16794-30dd-4902-8cff-12423c3c3b45",
+              "name": "fileid",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -660,
+        460
+      ],
+      "id": "3c5e3ef7-b37d-4f72-8ee6-10e99459f614",
+      "name": "SetFileID"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d9ae54f6-a6ff-4b47-9e1b-0f5d46623d5c",
+              "leftValue": "",
+              "rightValue": "Apologize",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -300,
+        140
+      ],
+      "id": "935ad69e-4895-4cc7-8836-953f88bc9656",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -40,
+        180
+      ],
+      "id": "36eaf2b4-9a8c-4b5f-95a3-0122dbfcd7f9",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "zHO6XatU7bilHoFh",
+          "name": "OpenAiTelegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "648835708313500",
+        "recipientPhoneNumber": "+8801717676441",
+        "textBody": "success",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        40,
+        340
+      ],
+      "id": "d9d83cbd-c3fe-44c3-9a29-3e1f61748cc9",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "50458532-f007-4038-9115-5b6617e3ea71",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "Ngxoh9wZdYMYHXQd",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -440,
+        360
+      ],
+      "id": "4be6c1b9-7385-4bf0-9fe7-3f976edfa3d2",
+      "name": "Chatgpt memory"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1WZ7wnw-7XUsY4BLHQlD_3_A6OFn2BknpFXWG7136Z64",
+          "mode": "list",
+          "cachedResultName": "Prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WZ7wnw-7XUsY4BLHQlD_3_A6OFn2BknpFXWG7136Z64/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ideal Client",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WZ7wnw-7XUsY4BLHQlD_3_A6OFn2BknpFXWG7136Z64/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "test",
+            "answer": "test"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "answer",
+              "displayName": "answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        340,
+        500
+      ],
+      "id": "d7b45f60-37dd-4cf3-b431-4dc070988e2a",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "HhN3BgE7q7auYiGf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You need to get the question and respond it accordingly in concise manner",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -60,
+        -80
+      ],
+      "id": "a04350b5-e96f-40f6-b605-dfc3f465d1fd",
+      "name": "AI Agent2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Msg": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SetFileID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chatgpt memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetFileID": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bb7949ef-d6cd-453c-9969-1ef3eaf6ce9b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "04144b620fb84cc55e184d551ed7511bed7582232de92f9af6147f2d41680d52"
+  },
+  "id": "UWQNep1q8NAqDMpP",
+  "tags": []
+}
