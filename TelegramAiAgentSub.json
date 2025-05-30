@@ -1,0 +1,182 @@
+{
+  "name": "TelegramAiAgentSub",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -580,
+        -140
+      ],
+      "id": "04e8762b-a675-441a-814b-9ac1357feeff",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=You are a helpful assistant\n\n# you have tools:\n\n## search_agent\nuse this tool to search the web, hackernews and wikipedia\n\n## calculator\nuse this tool to do math"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -360,
+        -140
+      ],
+      "id": "71c79d0c-fb35-4418-bc79-0ae7e72a4cba",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -520,
+        100
+      ],
+      "id": "6b187682-e87c-43bd-b550-319548116f09",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "zHO6XatU7bilHoFh",
+          "name": "OpenAiTelegramApi"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        180
+      ],
+      "id": "1ec6f3c7-3a42-4ae2-ad56-3bc6f1238422",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "resource": "all",
+        "additionalFields": {
+          "keyword": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Keyword', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.hackerNewsTool",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        180
+      ],
+      "id": "6b00d393-2943-4b5c-98d9-8111218cb078",
+      "name": "Hacker News"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        140,
+        80
+      ],
+      "id": "97da8598-bbca-42ce-9cef-112161aa5b92",
+      "name": "SerpAPI",
+      "credentials": {
+        "serpApi": {
+          "id": "sH7eGmKizwUwn41j",
+          "name": "SerpAPI account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "query": "Anthropic recent developments 2024"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hacker News": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "23d13139-d707-4069-979e-fbecb43927e6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "04144b620fb84cc55e184d551ed7511bed7582232de92f9af6147f2d41680d52"
+  },
+  "id": "YCy7QXh8B1vsIJc2",
+  "tags": []
+}
