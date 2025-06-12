@@ -1,0 +1,164 @@
+{
+  "name": "ChatBasedCryptoAdvisor",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -600,
+        -180
+      ],
+      "id": "5ef318a4-4764-4403-9ed8-f7f1a4b8650a",
+      "name": "When chat message received",
+      "webhookId": "05e50959-01df-414e-a180-65e6c82978d4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst input = $json[\"chatInput\"].trim().toLowerCase();\n\n// Map keywords to CoinGecko IDs\nconst coinMap = {\n  bitcoin: \"bitcoin\",\n  btc: \"bitcoin\",\n  ethereum: \"ethereum\",\n  eth: \"ethereum\",\n  solana: \"solana\",\n  sol: \"solana\",\n  dogecoin: \"dogecoin\",\n  doge: \"dogecoin\",\n  cardano: \"cardano\",\n  ada: \"cardano\",\n  polkadot: \"polkadot\",\n  dot: \"polkadot\"\n};\n\nlet foundCoin = null;\n\nfor (const keyword in coinMap) {\n  if (input.includes(keyword)) {\n    foundCoin = coinMap[keyword];\n    break;\n  }\n}\n\nif (!foundCoin) {\n  throw new Error(\"Could not detect any supported cryptocurrency.\");\n}\n\nreturn [\n  {\n    json: {\n      coin: foundCoin\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        -180
+      ],
+      "id": "fd824929-330d-46e2-97d0-4ab4c7ec4b43",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.coingecko.com/api/v3/coins/{{$json[\"coin\"]}}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -260,
+        -180
+      ],
+      "id": "c62e4d54-b1dd-4716-9d83-312655bc99f0",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "if (!items[0].json.market_data) {\n  throw new Error(\"market_data not found. Check API response or query params.\");\n}\n\nconst data = items[0].json.market_data;\nconst price = data.current_price.usd;\nconst change = data.price_change_percentage_24h;\n\nreturn [\n  {\n    json: {\n      price,\n      change_24h: change,\n      prompt: `You are a financial assistant. Analyze Bitcoin's data and suggest an action.\n\nBitcoin Price: $${price}\n24-Hour Change: ${change}%\n\nGuidelines:\n- If change > 5% → Recommend: Buy\n- If change < -5% → Recommend: Sell\n- Else → Recommend: Hold\n\nRespond in the format: \"Buy/Hold/Sell: <reason>\".`\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -180
+      ],
+      "id": "75530bd6-84aa-4faa-9b23-520b9d8c1084",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        100,
+        -180
+      ],
+      "id": "94a379b5-8bf9-469f-942d-8bbc7a4d58b0",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        80
+      ],
+      "id": "4a150d6f-6ac2-491f-955f-e1376c66f68c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "xEhPMB51bu2ofKNw",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "014a2814-6ce4-4177-871e-5eec53e7abbd",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "89b105281bbd68a6414d6d9136ea2d8356bfecbbff4bc6634faaf45c0edbeb3f"
+  },
+  "id": "lmVMO0ArElvJL37M",
+  "tags": []
+}

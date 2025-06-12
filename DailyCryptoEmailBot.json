@@ -1,0 +1,264 @@
+{
+  "name": "DailyCryptoEmailBot",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                0,
+                5,
+                6,
+                4
+              ],
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1140,
+        -320
+      ],
+      "id": "223ce029-effe-4036-b432-f08dd4faf7cc",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { coin: \"bitcoin\" } },\n  { json: { coin: \"ethereum\" } },\n  { json: { coin: \"solana\" } },\n  { json: { coin: \"cardano\" } },\n  { json: { coin: \"dogecoin\" } }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -980,
+        -320
+      ],
+      "id": "3cb71ea4-218f-4b0a-bc70-342a3a6349dc",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&order=market_cap_desc&per_page=5&page=1&sparkline=false",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -840,
+        -320
+      ],
+      "id": "4317ec7e-325b-49be-b415-c05f327f204b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const seen = new Set();\nconst output = [];\n\nfor (const item of items) {\n  const coin = item.json.id;\n\n  if (!seen.has(coin)) {\n    seen.add(coin);\n\n    const price = item.json.current_price;\n    const change = Number(item.json.price_change_percentage_24h || 0).toFixed(2);\n    const coinUpper = coin.toUpperCase();\n\n    output.push({\n      json: {\n        coin,\n        prompt: `You are a professional cryptocurrency advisor.\n\nPlease analyze the following data:\n\nCoin: ${coinUpper}\nCurrent Price: $${price}\n24-Hour Change: ${change}%\n\nRules:\n- If change > 5% → Recommend: Buy\n- If change < -5% → Recommend: Sell\n- Else → Recommend: Hold\n\nPlease respond only in this format:\n\nDecision: <Buy|Hold|Sell>\nReason: <Brief reason in one sentence>`\n      }\n    });\n  }\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -700,
+        -320
+      ],
+      "id": "b660d973-296e-408b-9e7f-7184bee484d4",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -560,
+        -140
+      ],
+      "id": "63902f17-58c8-41ab-b2cd-6a9d6e99c58f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        60
+      ],
+      "id": "6200e73a-e6f6-4989-a9b4-fce49fbf26d7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "xEhPMB51bu2ofKNw",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -280,
+        -380
+      ],
+      "id": "2839c219-d7e8-4a15-9892-89a8d0e0732f",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "let body = \"<h2>📊 Daily Crypto Market Recommendations</h2>\";\n\nfor (const item of items) {\n  const coin = item.json.coin?.toUpperCase() || \"UNKNOWN\";\n  const response = item.json.output || \"No response\";\n\n  // Format line breaks properly\n  const formatted = response.replace(/\\n/g, \"<br>\");\n\n  body += `<p><strong>🔹 ${coin}</strong><br>${formatted}</p>`;\n}\n\nreturn [{ json: { htmlBody: body } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        -380
+      ],
+      "id": "76a165ff-6f3d-450e-a56b-ff759d71f153",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "sendTo": "matinict@gmail.com",
+        "subject": " Daily Crypto  Recommendations Report",
+        "message": "={{ $json.htmlBody }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        20,
+        -380
+      ],
+      "id": "c5eb4969-19bd-43c8-9a7c-dd141851d358",
+      "name": "Gmail",
+      "webhookId": "00c9031f-e68b-441b-b2fb-e3c2ed909d91",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZEuhD2QXxHVGztE4",
+          "name": "n8nCourseMail"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "89a750b0-ca84-4e10-8a8d-fa2f498c5767",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "89b105281bbd68a6414d6d9136ea2d8356bfecbbff4bc6634faaf45c0edbeb3f"
+  },
+  "id": "M1rK3t7kCpZFGqSM",
+  "tags": []
+}
