@@ -1,0 +1,292 @@
+{
+  "name": "MistralOCR",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Invoice",
+        "formDescription": "Please upload your Invoice here ",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Invoice",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -1480,
+        -340
+      ],
+      "id": "7588af9d-24a3-4174-a9ed-0cff4fcf89bf",
+      "name": "On form submission",
+      "webhookId": "e3320ba3-d230-46d5-a859-e513c9efc3e5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/files",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "purpose",
+              "value": "ocr"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "Invoice"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1260,
+        -360
+      ],
+      "id": "fbfce314-30e3-42a5-ba31-2bab15865281",
+      "name": "Upload to Mistral"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.mistral.ai/v1/files/{{ $json.id }}/url ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiry",
+              "value": "24"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1040,
+        -360
+      ],
+      "id": "397545d2-10c6-40e9-9c2a-58338d022a61",
+      "name": "Get Signed URL",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "HzRwbkQ46pmQmIyF",
+          "name": "MOCR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"document_url\",\n    \"document_url\": \"{{ $json.url }}\"\n  },\n  \"include_image_base64\": true\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -820,
+        -360
+      ],
+      "id": "9460c036-cf61-42a0-b719-441b409babbf",
+      "name": "Get OCR Results"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.pages[0].markdown }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "INVOICE",
+              "type": "number",
+              "description": "the invoice number "
+            },
+            {
+              "name": "BILLED TO",
+              "description": "The BILLED TO info of the invoice"
+            },
+            {
+              "name": "Date of Issue",
+              "type": "date",
+              "description": "the date of issue of the invoice"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -600,
+        -360
+      ],
+      "id": "fcb75cb5-7514-471e-bd5d-a4f51da6c6b2",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -40
+      ],
+      "id": "5006c9ed-f5d2-4cf0-8f20-f7ea4cf0daf3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pdBoulk59X1vU2UK",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Get Signed URL": [
+      {
+        "json": {
+          "url": "https://mistralaifilesapiprodswe.blob.core.windows.net/fine-tune/b33eb4c7-88f0-4fe7-b8c7-81ab2d65442f/226bd0ae-7a63-4de9-b167-8d22dc13e287/079c7565554b40bf9458a7840935e97b.pdf?se=2025-06-22T19%3A36%3A54Z&sp=r&sv=2025-05-05&sr=b&sig=daCLvyG/WKpHTy6NN50iQF0ZbSxixpr6ftKatn9/Nos%3D"
+        }
+      }
+    ],
+    "Get OCR Results": [
+      {
+        "json": {
+          "pages": [
+            {
+              "index": 0,
+              "markdown": "# INVOICE\n\nBill To: **Rasheda Rahman** Ship To: **DHL** Date: Jun 21, 2025 Due Date: Jun 24, 2025 PO Number: **BDC0002** **Balance Due:** **$5,400.00**\n\n|  Item | Quantity | Rate | Amount  |\n| --- | --- | --- | --- |\n|  Laptop | 5 | $1,000.00 | $5,000.00  |\n|  Table | 4 | $100.00 | $400.00  |\n|  IPS | 2 | $500.00 | $1,000.00  |\n\nSubtotal: $6,400.00 Tax (0%): $0.00 Total: $6,400.00 Amount Paid: $1,000.00\n\nNotes: HDD\n\nTerms: Non Returnable",
+              "images": [],
+              "dimensions": {
+                "dpi": 200,
+                "height": 2200,
+                "width": 1700
+              }
+            }
+          ],
+          "model": "mistral-ocr-2505-completion",
+          "document_annotation": null,
+          "usage_info": {
+            "pages_processed": 1,
+            "doc_size_bytes": 13749
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload to Mistral",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Mistral": {
+      "main": [
+        [
+          {
+            "node": "Get Signed URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Signed URL": {
+      "main": [
+        [
+          {
+            "node": "Get OCR Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get OCR Results": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "04555ae5-cdf7-4829-b72f-c880cd85e208",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6520a3b9811541900fe876af96cdd49647f9d485f098d82472ecbb864124d157"
+  },
+  "id": "Wfa4B298gz5GZcsQ",
+  "tags": []
+}
