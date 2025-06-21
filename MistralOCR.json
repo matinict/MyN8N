@@ -34,7 +34,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "=Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+              "value": "=Bearer "
             }
           ]
         },
@@ -87,7 +87,7 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+              "value": "Bearer "
             }
           ]
         },
@@ -117,7 +117,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer lVpi5e3ZiGkl0uOeo3NSHomh3G27Dixf"
+              "value": "Bearer "
             }
           ]
         },
