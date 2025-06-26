@@ -1,0 +1,175 @@
+{
+  "name": "HotelBookingAirtable",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Hotel Room Booking",
+        "formDescription": "What room do you like?",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Your Name",
+              "placeholder": "type your name "
+            },
+            {
+              "fieldLabel": "What room do you like?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "single  room"
+                  },
+                  {
+                    "option": "Deluxe room"
+                  },
+                  {
+                    "option": "Suite"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -600,
+        -40
+      ],
+      "id": "65d05d39-678f-4420-b1e0-36db8c34c32d",
+      "name": "On form submission",
+      "webhookId": "7f80ce18-d8a7-4c22-bd99-0644c1b7101d"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appLqYqnhRVWkIj1W",
+          "mode": "list",
+          "cachedResultName": "Booking",
+          "cachedResultUrl": "https://airtable.com/appLqYqnhRVWkIj1W"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblueHMMVVr5YlNNF",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appLqYqnhRVWkIj1W/tblueHMMVVr5YlNNF"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json['Your Name'] }}",
+            "Room": "={{ $json['What room do you like?'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order Number",
+              "displayName": "Order Number",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Room",
+              "displayName": "Room",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Todo",
+                  "value": "Todo"
+                },
+                {
+                  "name": "In progress",
+                  "value": "In progress"
+                },
+                {
+                  "name": "Done",
+                  "value": "Done"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -380,
+        -40
+      ],
+      "id": "f728ba21-82d6-45ca-9a5f-0ebeb9c85754",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "4IxifWxbD9r22BkV",
+          "name": "POAi"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "69a865bd-905e-4643-b6b9-d64f2992e18e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6520a3b9811541900fe876af96cdd49647f9d485f098d82472ecbb864124d157"
+  },
+  "id": "9vHhMkcWBiZ58ZqE",
+  "tags": []
+}
