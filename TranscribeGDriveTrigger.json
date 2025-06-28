@@ -1,0 +1,406 @@
+{
+  "name": "TranscribeGDriveTrigger",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1C-dD1VQGQ5chRXI5gynepFdCaoTRekFR",
+          "mode": "list",
+          "cachedResultName": "audio",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1C-dD1VQGQ5chRXI5gynepFdCaoTRekFR"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        -100
+      ],
+      "id": "8fb93e7a-ad37-4b1e-a29c-349225dc8d4b",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -920,
+        -100
+      ],
+      "id": "78570cd7-e1c0-4f1a-98ad-79fe7a0448a6",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -780,
+        -100
+      ],
+      "id": "d37cf4f1-ae5e-4e61-9fab-f39767a8da2d",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "CZy7z1wmyOjkcCMt",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "Translate text to Bangla"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        -620,
+        60
+      ],
+      "id": "25d01ae6-d147-4a3f-9ca7-77f9c096b36f",
+      "name": "BasicLLM ChainTrBn"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo",
+          "mode": "list",
+          "cachedResultName": "gpt-3.5-turbo"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -600,
+        280
+      ],
+      "id": "fd424cb1-97e5-4110-a652-40f2ab694bfe",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "CZy7z1wmyOjkcCMt",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "input": "={{ $json.text }}",
+        "options": {
+          "binaryPropertyOutput": "data"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -300,
+        240
+      ],
+      "id": "e6a95a92-6c8b-4233-a726-69855788bd7a",
+      "name": "Generate AudioBn",
+      "credentials": {
+        "openAiApi": {
+          "id": "CZy7z1wmyOjkcCMt",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "=Bn_{{ $('Google Drive Trigger').item.json.originalFilename }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15LYA2ceK6mp33WNm756XydUUXINK125L",
+          "mode": "list",
+          "cachedResultName": "Transcribe",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15LYA2ceK6mp33WNm756XydUUXINK125L"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        20,
+        240
+      ],
+      "id": "789c93bd-47c5-4029-86dc-bff267acaa9d",
+      "name": "GDriveUploadAudioBn",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Google Drive Trigger').item.json.originalFilename.split('.').slice(0, -1).join('.') }}.txt\n",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15LYA2ceK6mp33WNm756XydUUXINK125L",
+          "mode": "list",
+          "cachedResultName": "Transcribe",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15LYA2ceK6mp33WNm756XydUUXINK125L"
+        },
+        "options": {
+          "useContentAsIndexableText": true,
+          "simplifyOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        20,
+        -100
+      ],
+      "id": "837d9a76-daea-40d3-9a10-9ae756b3436d",
+      "name": "GDriveUploadAudioToText",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "text",
+        "options": {
+          "fileName": "={{ $('Google Drive').item.json.originalFilename.split('.').slice(0, -1).join('.') }}\n"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        -100
+      ],
+      "id": "a419302e-57cd-4e7d-b8f4-29c90909b8c2",
+      "name": "ConvertToTextFile"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "text",
+        "options": {
+          "fileName": "=Bn_{{ $('Google Drive').item.json.originalFilename.split('.').slice(0, -1).join('.') }}\n"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        60
+      ],
+      "id": "2704f8f5-5da8-494a-852a-12f7c9ebfd33",
+      "name": "ConvertToTextFileBn"
+    },
+    {
+      "parameters": {
+        "name": "=Bn_{{ $('Google Drive Trigger').item.json.originalFilename.split('.').slice(0, -1).join('.') }}.txt\n",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15LYA2ceK6mp33WNm756XydUUXINK125L",
+          "mode": "list",
+          "cachedResultName": "Transcribe",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15LYA2ceK6mp33WNm756XydUUXINK125L"
+        },
+        "options": {
+          "useContentAsIndexableText": true,
+          "simplifyOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        20,
+        60
+      ],
+      "id": "9b4570a5-9ec5-41b3-b4d9-ac0259b906bf",
+      "name": "GDriveUploadAudioToTextBn",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "ConvertToTextFile",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BasicLLM ChainTrBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "BasicLLM ChainTrBn",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BasicLLM ChainTrBn": {
+      "main": [
+        [
+          {
+            "node": "Generate AudioBn",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ConvertToTextFileBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AudioBn": {
+      "main": [
+        [
+          {
+            "node": "GDriveUploadAudioBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ConvertToTextFile": {
+      "main": [
+        [
+          {
+            "node": "GDriveUploadAudioToText",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ConvertToTextFileBn": {
+      "main": [
+        [
+          {
+            "node": "GDriveUploadAudioToTextBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "973ae71e-6dcd-4a5a-829c-a941d0f27aba",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "89b105281bbd68a6414d6d9136ea2d8356bfecbbff4bc6634faaf45c0edbeb3f"
+  },
+  "id": "d5QIotlQDoMGdgGs",
+  "tags": []
+}
