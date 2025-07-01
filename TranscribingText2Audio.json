@@ -1,0 +1,192 @@
+{
+  "name": "T2A",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1p74VacxVgYnfoU_9D86J9fch5I_QJEej",
+          "mode": "list",
+          "cachedResultName": "Text",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1p74VacxVgYnfoU_9D86J9fch5I_QJEej"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "name": "Google Drive Trigger",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -600
+      ],
+      "id": "6dfd7282-5d02-4614-90e8-ca64acf441c8",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "download",
+        "fileId": "={{ $node['Google Drive Trigger'].json['id'] }}",
+        "options": {}
+      },
+      "name": "Read Text File",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 1,
+      "position": [
+        760,
+        -600
+      ],
+      "id": "86c44b3d-b07c-4238-a973-c46bf4000270",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        -600
+      ],
+      "id": "3cf4ad23-6f6d-4ea9-b8d2-092a74179684",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "input": "={{ $json.data }}",
+        "voice": "echo",
+        "options": {
+          "binaryPropertyOutput": "data"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1260,
+        -600
+      ],
+      "id": "7ab502e1-6d75-40d3-994c-b32b3c1e3fec",
+      "name": "Generate AudioBn",
+      "credentials": {
+        "openAiApi": {
+          "id": "CZy7z1wmyOjkcCMt",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "=bn_{{ $json.fileName }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15LYA2ceK6mp33WNm756XydUUXINK125L",
+          "mode": "list",
+          "cachedResultName": "Transcribe",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15LYA2ceK6mp33WNm756XydUUXINK125L"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1500,
+        -600
+      ],
+      "id": "1a62f3ca-562c-4aea-98b4-4f2d53e43108",
+      "name": "GDriveUploadAudioBn",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Tdvy49I6XK1hbk5y",
+          "name": "PlayGDriveClient"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Text File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Text File": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Generate AudioBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AudioBn": {
+      "main": [
+        [
+          {
+            "node": "GDriveUploadAudioBn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8a9e3576-1eab-4779-b3c6-9a7485df0407",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "89b105281bbd68a6414d6d9136ea2d8356bfecbbff4bc6634faaf45c0edbeb3f"
+  },
+  "id": "ymrgotce2wHY42iv",
+  "tags": []
+}
