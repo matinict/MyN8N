@@ -55,6 +55,7 @@ This is a **no-code RAG pipeline** that lets you build your own **AI-powered doc
 
 📄 **Video Tutorial**:
 [Watch on YouTube](https://youtu.be/dE1JZut2kvk)
+
 [YouTube Channel](https://youtube.com/@PlayOwnAi)
 
 
