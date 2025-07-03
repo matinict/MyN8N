@@ -106,7 +106,7 @@ open source no-code rag pipeline
 
 ## 🙋 Support
 
-Feel free to [create an issue](https://github.com/matinict/MyN8N/issues) or ask your questions on the [YouTube channel](https://youtube.com/@POAiB). PRs and improvements are welcome!
+Feel free to [create an issue](https://github.com/matinict/MyN8N/issues) or ask your questions on the [YouTube channel](https://youtube.com/@PlayOwnAi). PRs and improvements are welcome!
 
 ---
 
