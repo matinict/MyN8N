@@ -54,7 +54,10 @@ This is a **no-code RAG pipeline** that lets you build your own **AI-powered doc
 [AskMyDocs.json](https://github.com/matinict/MyN8N/blob/main/AskMyDocs.json)
 
 📄 **Video Tutorial**:
-[Watch on YouTube](https://youtube.com/@POAiB)
+[Watch on YouTube](https://youtu.be/dE1JZut2kvk)
+[YouTube Channel](https://youtube.com/@PlayOwnAi)
+
+
 
 ---
 
