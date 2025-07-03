@@ -8,7 +8,7 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -600,
+        -600, 
         -180
       ],
       "id": "5ef318a4-4764-4403-9ed8-f7f1a4b8650a",
