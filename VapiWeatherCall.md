@@ -1,148 +1,130 @@
 # VapiWeatherCall  
 ## Build Your Own AI Voice Agents in n8n Using Vapi
 
+# 🌦️ VapiWeatherCall – AI-Powered Weather Voice Assistant
+
+Welcome to **PlayOwnAi!** In this project, we’ll build a smart AI voice assistant named `VapiWeatherCall` using **Vapi**, **n8n**, **OpenAI**, and **OpenWeatherMap**. This workflow enables real-time weather queries through voice using AI automation.
 
 ---
 
-```markdown
-# 🌦️ VapiWeatherCall – AI-Powered Weather Caller Agents (n8n + OpenAI + OpenWeatherMap)
+## 🎙️ Intro – Final Workflow Overview
 
-**VapiWeatherCall** is an AI-driven Caller Agents workflow built with `n8n` that accepts webhook-based queries (via tools like [Vapi](https://www.vapi.ai/)), extracts location data using OpenAI, fetches live weather using OpenWeatherMap, and returns a short natural-language weather summary.
+This AI-powered assistant listens to user input through **Vapi**. The voice message is:
 
----
+1. **Captured by n8n** using a **Webhook**.
+2. **Parsed by an AI Agent** (OpenAI GPT-4o-mini) to extract the location.
+3. **Weather data is fetched** from **OpenWeatherMap**.
+4. **OpenAI** reformulates the result into a one-sentence natural response.
+5. The response is returned to **Vapi** via **Respond to Webhook**.
 
-## 💡 Use Case
-
-- Integrate this with a voice AI system like Vapi.ai or chat interface
-- Ask: “What's the weather in Tokyo?”
-- Get a direct AI-generated sentence with the current weather
-
----
-
-## 🔩 Workflow Overview
-
-```
-
-Webhook (POST)
-⮕ AI Agent (LangChain)
-⮕ OpenAI GPT-4.1-mini
-⮕ Tool: OpenWeatherMap (current weather)
-⮕ Response (Returns weather info with toolCallId)
-
-````
+This powerful combination delivers real-time, voice-based AI responses.
 
 ---
 
-## 🧱 Nodes Used
+## 📦 Workflow Overview – Step by Step
 
-| Node                  | Purpose                                          |
-|-----------------------|--------------------------------------------------|
-| Webhook               | Receives incoming request from Vapi/clients     |
-| AI Agent              | LangChain node that orchestrates AI + tools     |
-| OpenAI Chat Model     | GPT-4.1-mini model for parsing and summarizing  |
-| OpenWeatherMap Tool   | Fetches weather data for the city               |
-| Respond to Webhook    | Returns structured JSON with result             |
+1. 📥 **Webhook Node** – Receives voice request from Vapi.
+2. 🧠 **AI Agent (LangChain)** – Understands the query and extracts the location.
+3. 🌤️ **OpenWeatherMap Tool** – Fetches current weather.
+4. 💬 **OpenAI Chat Model** – Generates a user-friendly reply.
+5. 📡 **Respond to Webhook** – Sends the result back to Vapi.
+
+All handled in n8n with zero complex code!
 
 ---
 
-## 🧠 AI Prompt Logic
+## 🛠️ Workflow Creation Steps
 
-The `AI Agent` uses the following prompt template:
+### Step 1: Create Workflow
+
+- Open your n8n dashboard.
+- Create a new workflow.
+- Rename it `VapiWeatherCall`.
+
+### Step 2: Add Webhook Node
+
+- Add a **Webhook** node.
+- Method: `POST`
+- Path: Your custom webhook URL
+- This node receives user voice messages from Vapi.
+
+---
+
+## 🎙️ Node-by-Node Walkthrough
+
+### 🧠 AI Agent Node
+
+- Select **AI Agent** from the node list.
+- Prompt type: `define`
+- Prompt:
 
 ```handlebars
 Find the weather for  {{ $json.body.message.toolWithToolCallList[0].toolCall.function.arguments.Place }}
 Only output one sentence, no newline.
-````
-
-This ensures a concise weather update like:
-
-> `"It's currently 25°C with light rain in Dhaka."`
-
----
-
-## 🔐 Required Credentials
-
-| Service        | Credential Name | Link to Create Key                                                            |
-| -------------- | --------------- | ----------------------------------------------------------------------------- |
-| OpenAI         | `VapiOpenAi`    | [OpenAI API Keys](https://platform.openai.com/settings/organization/api-keys) |
-| OpenWeatherMap | `POAiWeath`     | [OpenWeatherMap API Keys](https://home.openweathermap.org/api_keys)           |
-
----
-
-## 📥 Webhook Format (Vapi Compatible)
-
-Expected payload format from voice/chat system (e.g., Vapi):
-
-```json
-{
-  "body": {
-    "message": {
-      "toolWithToolCallList": [
-        {
-          "toolCall": {
-            "function": {
-              "arguments": {
-                "Place": "Dhaka"
-              }
-            }
-          }
-        }
-      ],
-      "toolCallList": [
-        {
-          "id": "abc123"
-        }
-      ]
-    }
-  }
-}
 ```
 
----
+### 🌤️ OpenWeatherMap Node
 
-## 📤 Response Format
+- Add a new node: **OpenWeatherMap**
+- Set up credentials: [OpenWeatherMap API](https://home.openweathermap.org/api_keys)
+- The city name is automatically pulled from the AI Agent
+
+### 💬 OpenAI Chat Model Node
+
+- Add: **OpenAI Chat Model** node
+- Connect using credentials from [OpenAI API Settings](https://platform.openai.com/settings/organization/api-keys)
+- Model: `gpt-4o-mini`
+
+### 📡 Respond to Webhook Node
+
+- Add: **Respond to Webhook** node
+- Response Body:
 
 ```json
 {
   "results": [
     {
-      "toolCallId": "abc123",
-      "result": "It's 28°C and sunny in New York."
+      "toolCallId": "{{ $('Webhook').item.json.body.message.toolCallList[0].id }}",
+      "result": "{{ $json.output }}"
     }
   ]
 }
 ```
 
----
-
-## 📁 Files & Live Demo
-
-* 🔗 **Workflow JSON**: [VapiWeatherCall.json](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)
-* 📄 **Documentation**: [VapiWeatherCall.md](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)
-* 🗣️ **Try it Live on Vapi**: [Launch Assistant](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
+- This sends the weather response back to the Vapi conversation.
 
 ---
 
-## 🧪 How to Test
+## 🔑 API Credential Setup
 
-1. Import the workflow into your self-hosted or cloud `n8n` instance.
-2. Add OpenAI and OpenWeatherMap credentials.
-3. Test the webhook using Postman or Vapi's voice assistant with a supported city.
-4. Get back a natural language weather response.
-
----
-
-## 📜 License
-
-MIT License ©PlayOwnAi
+| Service        | Link to Generate API Key                                                      |
+| -------------- | ----------------------------------------------------------------------------- |
+| OpenAI         | [OpenAI API Keys](https://platform.openai.com/settings/organization/api-keys) |
+| OpenWeatherMap | [OpenWeatherMap Keys](https://home.openweathermap.org/api_keys)               |
 
 ---
 
-## 📺 Tutorials & More
+## 🔗 Useful Links
 
-Check out [PlayOwnAI on YouTube](https://www.youtube.com/@PlayOwnAi) for tutorials on AI & automation with n8n and tools like Vapi and LangChain.
+- 📂 [Workflow JSON File](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)
+- 📄 [Markdown Documentation](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)
+- 🗣️ [Try on Vapi Dashboard](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
 
-```
+---
+
+## 🛟 Support Line
+
+If you find this complex:
+
+🧩 Download the full workflow from GitHub: [MyN8N Repository](https://github.com/matinict/MyN8N)
+
+💬 Need help? Drop a comment below on [YouTube Channel – PlayOwnAi](https://www.youtube.com/@PlayOwnAi) and I’ll assist you.
+
+---
+
+Happy Automating with AI! 🤖
+
+
 
 Let me know if you'd like this exported as a `.md` file or automatically committed to your GitHub repo.
 ```
