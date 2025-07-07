@@ -12,7 +12,7 @@
 1. VapiWeatherCall – AI-Powered Weather Voice Assistant
    [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)  
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)  
-   [![OpenAI](https://img.shields.io/badge/OpenAI-GPT4o-mini-412991?logo=openai)](https://platform.openai.com/)  
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)  
    [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
    
    workflow - https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json  
@@ -27,7 +27,7 @@
 
    [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)  
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)  
-   [![OpenAI](https://img.shields.io/badge/OpenAI-GPT4o-mini-412991?logo=openai)](https://platform.openai.com/)  
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)  
    [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
 
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
@@ -37,15 +37,7 @@
 
 
 
-### 1. **VapiWeatherCall – AI-Powered Weather Voice Assistant**  
-[![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)  
-[![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)  
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT4o-mini-412991?logo=openai)](https://platform.openai.com/)  
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
-
-
-
-💡 Voice-based AI assistant that extracts the city name from a call and responds with real-time weather using OpenWeatherMap and GPT-4o-mini.
+ 
 
 ---
 
