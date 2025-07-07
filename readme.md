@@ -14,7 +14,6 @@
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)
    [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
    [![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-008CBA?logo=openweathermap&logoColor=white)](https://openweathermap.org/)
-   [![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented--Generation-purple)](https://www.langchain.com/use-cases/question-answering)
 
    
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
@@ -28,6 +27,7 @@
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Qdrant](https://img.shields.io/badge/VectorDB-Qdrant-4E75D4?logo=qdrant)](https://qdrant.tech/)
+   [![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented--Generation-purple)](https://www.langchain.com/use-cases/question-answering)
 
 
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
