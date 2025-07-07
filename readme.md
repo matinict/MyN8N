@@ -14,13 +14,15 @@
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)
    [![vapiAi](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
    [![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-008CBA?logo=openweathermap&logoColor=white)](https://openweathermap.org/)
-   [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)
+   [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)2
+   
 
 
    
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/B89q1Huaml8)
+   - ### 📺 Watch the Full Playlist [👉 PlayOwnAi YouTube Playlist](https://youtube.com/playlist?list=PL-7c7rBaJmG94itrGiWmVdMIvSOl6qoQP&si=cSC_J7BClNDgo
    - 💡 Voice-based AI assistant that extracts the city name from a call and responds with real-time weather using OpenWeatherMap and GPT-4o-mini.
      
 
