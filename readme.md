@@ -7,6 +7,20 @@
 
 ## 📋 Project Index
 
+# Project List
+
+1. VapiWeatherCall – AI-Powered Weather Voice Assistant  
+   workflow - https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json  
+   documents - https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md  
+   YouTube - https://www.youtube.com/watch?v=w3qodnA0sL0&t=134s
+
+1. AskMyDocs – AI-Powered RAG Agent Using n8n, OpenAI & Qdrant Vector Store  
+   workflow - https://github.com/matinict/MyN8N/blob/main/AskMyDocs.md.json  
+   documents - https://github.com/matinict/MyN8N/blob/main/AskMyDocs.md  
+   YouTube - https://www.youtube.com/watch?v=w3qodnA0sL0&t=134s
+
+
+
 ### 1. **VapiWeatherCall – AI-Powered Weather Voice Assistant**  
 [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)  
 [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)  
