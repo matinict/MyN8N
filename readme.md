@@ -22,10 +22,8 @@
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/B89q1Huaml8)
-   - ### 📺 Watch the Full Playlist [👉 PlayOwnAi YouTube Playlist](https://youtube.com/playlist?list=PL-7c7rBaJmG94itrGiWmVdMIvSOl6qoQP&si=cSC_J7BClNDgo
    - 💡 Voice-based AI assistant that extracts the city name from a call and responds with real-time weather using OpenWeatherMap and GPT-4o-mini.
-   - [![RAGe playlist](https://img.youtube.com/vi/BROJ99D2vEw/0.jpg)](https://youtube.com/playlist?list=PL-7c7rBaJmG94itrGiWmVdMIvSOl6qoQP&si=cSC_J7BClNDgzoH9)
-
+   
      
 
 1. AskMyDocs – AI-Powered RAG Agent Using n8n, OpenAI & Qdrant Vector Store
