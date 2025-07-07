@@ -35,7 +35,7 @@
 
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
-   - 🎥 **YouTube**: [Watch Demo](https://www.youtube.com/watch?v=w3qodnA0sL0&t=134s)
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/dE1JZut2kvk)
    - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
  
 
