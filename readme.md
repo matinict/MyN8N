@@ -1,13 +1,11 @@
 
-# 🚀 AI Automation Projects – Powered by n8n + OpenAI + LangChain
+# 🚀 AI Automation Projects 
 
 > 🔧 Built with n8n, OpenAI GPT, LangChain, and more – these automation workflows connect AI tools into seamless voice, chat, and data experiences.
 
 ---
 
 ## 📋 Project Index
-
-# Project List
 
 1. VapiWeatherCall – AI-Powered Weather Voice Assistant
    [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)  
