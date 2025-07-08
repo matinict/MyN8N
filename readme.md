@@ -42,6 +42,6 @@
  
 
 ---
-> ✅ Call Center Agent PlayList by PlayOwnAi [YouTube – Call Center Agent](https://youtube.com/playlist?list=PL-7c7rBaJmG8WhRunrsHZZ0f4XWjYHc5V&si=cuRvZwwh9F1yPVYU)
+> ✅ Call Center Agent PlayList by PlayOwnAi [YouTube – Call Center Agent](https://youtube.com/playlist?list=PL-7c7rBaJmG8WhRunrsHZZ0f4XWjYHc5V&si=cuRvZwwh9F1yPVYU)   
 > ✅ RAG PlayList by PlayOwnAi [YouTube – RAG](https://www.youtube.com/playlist?list=PL-7c7rBaJmG94itrGiWmVdMIvSOl6qoQP)   
 > ✅ More projects are coming soon! Stay tuned via [YouTube – PlayOwnAi](https://www.youtube.com/@PlayOwnAi)
