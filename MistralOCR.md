@@ -73,3 +73,14 @@ This project is released under the MIT License.
 Feel free to fork, use, and enhance!
 
 ---
+
+
+## 🌐 Connect with Us
+
+[![Facebook](https://img.shields.io/badge/Follow-Facebook-1877F2?logo=facebook&logoColor=white)](https://web.facebook.com/Playownai/)
+[![LinkedIn](https://img.shields.io/badge/Follow-LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/company/playownai)
+[![YouTube](https://img.shields.io/badge/Subscribe-@PlayOwnAi-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/@PlayOwnAi)
+[![GitHub](https://img.shields.io/badge/GitHub-MyN8N-181717?logo=github&logoColor=white)](https://github.com/matinict/MyN8N)
+---
+
+
