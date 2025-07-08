@@ -55,7 +55,7 @@
    - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
  
 
---- 
+---   
 
 ## 📺 PlayOwnAi Playlists
 
