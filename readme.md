@@ -39,6 +39,20 @@
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/dE1JZut2kvk)
    - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
+  
+1. AiHrChatBot:  Build Your First RAG HR Assistant that AI Killed HR Using n8n, OpenAI & Pinecone
+
+   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
+   [![Pinecone](https://img.shields.io/badge/VectorDB-Pinecone-039389?logo=pinecone&logoColor=white)](https://www.pinecone.io/)
+   [![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented--Generation-purple)](https://www.langchain.com/use-cases/question-answering)
+
+
+   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/AiHrChatBot.json)  
+   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/AiHrChatBot.md)  
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/KVytO_9WlSg)
+   - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
  
 
 --- 
