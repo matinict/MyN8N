@@ -67,7 +67,7 @@
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/w3qodnA0sL0)
-   - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings & Pinecone vector search.
+   - 💡 Upload documents the extraction and understanding of text from images and PDFs using Mistral OCR and Google Gemini, all inside an n8n workflow
 
 
 
