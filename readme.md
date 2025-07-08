@@ -42,5 +42,5 @@
  
 
 ---
-
+> ✅ RAG PlayList by PlayOwnAi [YouTube – RAG](https://www.youtube.com/playlist?list=PL-7c7rBaJmG94itrGiWmVdMIvSOl6qoQP) 
 > ✅ More projects are coming soon! Stay tuned via [YouTube – PlayOwnAi](https://www.youtube.com/@PlayOwnAi)
