@@ -52,7 +52,7 @@
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/AiHrChatBot.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/AiHrChatBot.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/KVytO_9WlSg)
-   - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
+   - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings & Pinecone vector search.
  
 
 ---   
