@@ -53,6 +53,29 @@
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/AiHrChatBot.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/KVytO_9WlSg)
    - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings & Pinecone vector search.
+
+1. MistralOCR: Build Your Own AI-Powered Mistral OCR Integration in n8n
+
+   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
+   [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+   [![Mistral OCR](https://img.shields.io/badge/OCR-Mistral%20AI-ff5e62?logo=brain&logoColor=white)](https://mistral.ai)
+
+
+
+   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.json)  
+   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.md)  
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/w3qodnA0sL0)
+   - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings & Pinecone vector search.
+
+
+
+
+
+
+
+
  
 
 ---   
