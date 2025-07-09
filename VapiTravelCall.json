@@ -1,0 +1,564 @@
+{
+  "name": "VapiTravelCall",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "9ddb97c2-9ff6-4889-86ca-e3ed54284978",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1280,
+        -380
+      ],
+      "id": "46c6e291-60ef-4b85-90f9-2492aea0766d",
+      "name": "Webhook",
+      "webhookId": "9ddb97c2-9ff6-4889-86ca-e3ed54284978"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "315e037b-043c-4532-a4bb-58d4bc162752",
+              "name": "name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "7b5e72ef-5b5e-47bc-9e14-7d9aa3333412",
+              "name": "origin",
+              "value": "={{ $json.body.departureCity }}",
+              "type": "string"
+            },
+            {
+              "id": "f91fce64-839e-4951-83d1-8f33f9fd44fa",
+              "name": "destination",
+              "value": "={{ $json.body.destination }}",
+              "type": "string"
+            },
+            {
+              "id": "0ea4b688-5555-4d0e-a355-3ecf62795d29",
+              "name": "departureDate",
+              "value": "={{ $json.body.departureDate }}",
+              "type": "string"
+            },
+            {
+              "id": "5c2dd36b-627e-4e14-ad89-357c32bf5d7b",
+              "name": "returnDate",
+              "value": "={{ $json.body.returnDate }}",
+              "type": "string"
+            },
+            {
+              "id": "09e03c02-c516-45bf-8940-00fb515b15ab",
+              "name": "numberOfTravelers",
+              "value": "={{ $json.body.numberOfTravelers }}",
+              "type": "number"
+            },
+            {
+              "id": "94f3aa2b-637c-4f2b-9f9d-48e9db653b74",
+              "name": "travelPurpose",
+              "value": "={{ $json.body.travelPurpose }}",
+              "type": "string"
+            },
+            {
+              "id": "269f3ff5-e6c0-4020-99f5-5e5b0e0be83c",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "2b03bee2-a271-404f-b68f-f541d45b2883",
+              "name": "bookingStatus",
+              "value": "={{ $json.body.bookingStatus }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1160,
+        -380
+      ],
+      "id": "294c1fcf-1487-4227-a93b-8cef1689d94e",
+      "name": "AgentQueryFields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={\n  \"name\": \"{{ $json.name }} \",\n  \"origin\": \"{{ $json.origin }}\",\n  \"destination\": \"{{ $json.destination }}\",\n  \"departureDate\": \"{{ $json.departureDate }}\",\n  \"returnDate\": \"{{ $json.returnDate }}\",\n  \"numberOfTravelers\": {{ $json.numberOfTravelers }},\n  \"travelPurpose\": \"{{ $json.travelPurpose }}\",\n  \"budgetRange\": \"$2000-$3000\",\n  \"bookingStatus\": \"{{ $json.bookingStatus }}\",\n  \"email\": \"{{ $json.email }}\"\n}\n",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -1320,
+        -160
+      ],
+      "id": "a3de8d29-6d22-4a78-96e3-0af47543a77f",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        20
+      ],
+      "id": "fb2ab3c0-a489-4946-b9b5-11bc1b50bfeb",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "N1uINvtdPZFqkO6h",
+          "name": "GeminiApiN8n"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -1180,
+        20
+      ],
+      "id": "8ea98b34-2e19-4d6b-b1c0-67dc91808c0f",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "=Activities in the {{ $('AgentQueryFields').item.json.destination }} city"
+            },
+            {
+              "name": "engine",
+              "value": "google"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1020,
+        -160
+      ],
+      "id": "5dafab3f-690f-4c59-be61-acc3e5665fd9",
+      "name": "ActivitiesHTTPRequest",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "jbz2An2BMH3mpJm7",
+          "name": "Query Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search?engine=google_flights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google_flights"
+            },
+            {
+              "name": "departure_id",
+              "value": "=DAC"
+            },
+            {
+              "name": "arrival_id",
+              "value": "=DXB"
+            },
+            {
+              "name": "outbound_date",
+              "value": "={{ $('Webhook').item.json.body.departureDate }}"
+            },
+            {
+              "name": "return_date",
+              "value": "={{ $('Webhook').item.json.body.returnDate }}"
+            },
+            {
+              "name": "adults",
+              "value": "={{ $('Webhook').item.json.body.numberOfTravelers }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -820,
+        -160
+      ],
+      "id": "ad8d05b2-d1d9-464b-95c1-8f65d9be41c6",
+      "name": "FlightHTTPRequest",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "jbz2An2BMH3mpJm7",
+          "name": "Query Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search?engine=google_hotels",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "google_hotels"
+            },
+            {
+              "name": "check_in_date",
+              "value": "={{ $('Webhook').item.json.body.departureDate }}"
+            },
+            {
+              "name": "check_out_date",
+              "value": "={{ $('Webhook').item.json.body.returnDate }}"
+            },
+            {
+              "name": "adults",
+              "value": "={{ $('Webhook').item.json.body.numberOfTravelers }}"
+            },
+            {
+              "name": "q",
+              "value": "={{ $('Webhook').item.json.body.destination }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        -160
+      ],
+      "id": "b7709c9e-41bf-4505-8083-920d940950ec",
+      "name": "HotelHTTP Request",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "jbz2An2BMH3mpJm7",
+          "name": "Query Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Hi {{ $('Webhook').item.json.body.name }} ,\n \nYou are a travel assistant. Based on the following customer details, write a polite, clear, and friendly email that summarizes their travel inquiry and confirms that a human agent will contact them soon.\n\nThank you for reaching out to TravelPOAi! We’re excited to help you plan your upcoming trip.\n\nHere’s a summary of your travel request:\n\n• **Departure City:** {{ $('Webhook').item.json.body.departureCity }}\n• **Destination:** {{ $('Webhook').item.json.body.destination }}\n• **Dates:** {{ $('Webhook').item.json.body.departureDate }}\n• **Travellers:** {{ $('Webhook').item.json.body.numberOfTravelers }}\n• **Purpose of Travel:** {{ $('Webhook').item.json.body.travelPurpose }}\n• **Hotel Preferences:**  {{ $('Webhook').item.json.body.hotelType }} {{ $('Webhook').item.json.body.roomType }} room  \n• **Budget Range:** {{ $('Webhook').item.json.body.budgetRange }}\n• **Special Requests:** {{ $('Webhook').item.json.body.specialRequests }}\n• **Transport Needed:** {{ $('Webhook').item.json.body.transportRequired }}\n• **Travel Insurance:** {{ $('Webhook').item.json.body.phoneNumber }} \n\nWe have received all the details, and a member of our team will be in touch shortly via email or phone ({{ $('AgentQueryFields').item.json.email }} /{{ $('Webhook').item.json.body.phoneNumber }}   to finalize the arrangements and answer any questions you may have.\n\n---\n\nIf there’s anything else you’d like to share in the meantime—changes in dates, more flexibility in budget, or other needs—just reply to this email, and we’ll make sure to update your plan accordingly.\n\nThanks again for choosing TravelPOAi. We look forward to helping you create a fantastic and stress‑free travel experience!\n\nWarm regards,  \n**TravelPOAi Team**\n\n\n\n\n",
+        "options": {
+          "systemMessage": "=You are a travel assistant writing personalized emails on behalf of TravelPOAi\n\nUse the following customer input and travel info:\n\n Flight options:\n{{\n  $('FlightHTTPRequest').item.json.best_flights.map((itinerary, index) => {\n    // Construct a summary for each itinerary\n    const departureAirportId = itinerary.flights[0].departure_airport.id;\n    const arrivalAirportId = itinerary.flights[itinerary.flights.length - 1].arrival_airport.id;\n\n    const airlineName = itinerary.flights[0].airline;\n    const airplaneType = itinerary.flights[0].airplane;\n    const travelClass = itinerary.flights[0].travel_class; // Added this line\n\n    const price = itinerary.price;\n    const formattedPrice = price ? `$${price}` : 'N/A';\n\n    const totalDurationMinutes = itinerary.total_duration;\n    const durationHours = Math.floor(totalDurationMinutes / 60);\n    const durationMinutes = totalDurationMinutes % 60;\n\n    // Modified the return string to include travelClass\n    return `Option ${index + 1}: ${airlineName} (${airplaneType}) - ${departureAirportId} to ${arrivalAirportId} - ${durationHours}h ${durationMinutes}m - Class: ${travelClass} - Price: ${formattedPrice}`;\n  }).join('\\n- ')\n}}\n\n\n\nHotel options:\n{{\n  $json.properties.map(p => {\n    const hotelName = p.name;\n    let priceValue = 'N/A'; // Default to N/A\n\n    // Check if rate_per_night and extracted_lowest exist and are a number\n    if (p.rate_per_night && typeof p.rate_per_night.extracted_lowest === 'number') {\n      priceValue = p.rate_per_night.extracted_lowest;\n    } \n    // Fallback if the above isn't present, check the 'extracted_price' field which is directly on the 'ads' object, but might also be on 'properties'\n    else if (typeof p.extracted_price === 'number') {\n      priceValue = p.extracted_price;\n    }\n\n    const formattedPrice = priceValue !== 'N/A' ? `$${priceValue}` : 'Price N/A';\n\n    return `${hotelName} - Price: ${formattedPrice}`;\n  }).join('\\n- ')\n}}\n\n\nBased on the customer’s input, write a well-formatted, friendly confirmation email that:\n- Thanks the customer for their inquiry\n- Summarizes their travel plan clearly (including flight & hotel options)\n- Confirms a human agent will contact them soon\n- Uses a professional, calm, and helpful tone\n\nAvoid upselling or suggesting other options unless already provided. Sign off as “TravelPOAi Team”.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        -160
+      ],
+      "id": "d2198e1f-3351-49c6-9a69-51d88f832d4c",
+      "name": "EmailAIAgent"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        160,
+        -160
+      ],
+      "id": "9eec9f04-0267-45dd-b29c-bc0de42535eb",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -20,
+        -160
+      ],
+      "id": "bf1b0478-c0cd-4265-a20e-c224b327327e",
+      "name": "Send a message",
+      "webhookId": "6816ce5a-e0c4-4268-ab0b-684504be5a75",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6M9X7ngXC5RJ4KgU",
+          "name": "POAiGmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        40
+      ],
+      "id": "b034e94b-4b42-458c-a19f-822c924db420",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "N1uINvtdPZFqkO6h",
+          "name": "GeminiApiN8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.output || $input.first().json.body || '';\n\n// Extract subject using a simpler regex that looks for text between **Subject:** and the next **\nconst subjectMatch = raw.match(/\\*\\*Subject:\\s*(.*?)\\*\\*/); // Capture group for the content\n\nlet subject = '';\nif (subjectMatch && subjectMatch[1]) { // Check if the match and the captured group exist\n  subject = subjectMatch[1].trim(); // Trim any whitespace from the captured group\n}\n\n// Clean body by removing subject section and any leading separators\nconst cleanedBody = raw\n  .replace(/\\*\\*Subject:[\\s\\S]*?\\*\\*/, '')  // remove subject portion\n  .replace(/^\\s*\\*{3,}\\s*/, '')             // remove leading *** separators\n  .trim();\n\nreturn [{\n  json: {\n    subject,\n    body: cleanedBody\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        -160
+      ],
+      "id": "042e7bd3-793f-4623-bd49-3d77ab0ea7a5",
+      "name": "Code"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "poai2.app.n8n.cloud",
+            "user-agent": "curl/8.5.0",
+            "content-length": "672",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "37.111.193.218",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "BD",
+            "cf-ray": "95c147e4701afe13-SIN",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "x-forwarded-for": "37.111.193.218, 162.158.88.118",
+            "x-forwarded-host": "poai2.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-82-6b58d578cf-d9dl2",
+            "x-is-trusted": "yes",
+            "x-real-ip": "37.111.193.218"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "Matin Rahman",
+            "email": "matinict@gmail.com",
+            "phoneNumber": "+880171776441",
+            "departureCity": "Dhaka",
+            "destination": "Dubai",
+            "departureDate": "2025-08-15",
+            "returnDate": "2025-08-25",
+            "numberOfTravelers": 2,
+            "travelPurpose": "Vacation",
+            "hotelType": "Luxury",
+            "roomType": "Suite",
+            "transportRequired": true,
+            "preferredAirline": "Emirates",
+            "needTravelInsurance": false,
+            "budgetRange": "$2000–$3000",
+            "specialRequests": "Halal food, wheelchair assistance",
+            "preferredLanguage": "English",
+            "leadSource": "Vapi Bot",
+            "bookingStatus": "New Lead",
+            "agentAssigned": "Unassigned"
+          },
+          "webhookUrl": "https://poai2.app.n8n.cloud/webhook-test/9ddb97c2-9ff6-4889-86ca-e3ed54284978",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AgentQueryFields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AgentQueryFields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "ActivitiesHTTPRequest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ActivitiesHTTPRequest": {
+      "main": [
+        [
+          {
+            "node": "FlightHTTPRequest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FlightHTTPRequest": {
+      "main": [
+        [
+          {
+            "node": "HotelHTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HotelHTTP Request": {
+      "main": [
+        [
+          {
+            "node": "EmailAIAgent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EmailAIAgent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "EmailAIAgent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "35f44a9c-341f-48fd-995e-47ecb5836259",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dd25159936b8b7f665b3a47107b5fe3ccf39e193e01b31a1ad6ff5635f205537"
+  },
+  "id": "AKEtHfX9NCMXzvJ7",
+  "tags": []
+}
