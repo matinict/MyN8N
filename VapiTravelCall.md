@@ -44,7 +44,7 @@ Welcome to **PlayOwnAi!** In this project, you'll build `VapiTravelCall`, a smar
 
 ## 📂 Sample Input (Webhook Body)
 
-```json
+```
 {
   "name": "Matin Rahman",
   "email": "matinict@gmail.com",
@@ -107,8 +107,7 @@ Extracts:
 
 ---
 
-```json
-{
+```
 Dear Matin Rahman,
 
 Thank you for reaching out to TravelPOAi! We are delighted to assist
