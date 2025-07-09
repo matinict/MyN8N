@@ -28,7 +28,7 @@
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
    [![vapiAi](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
-   [![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-008CBA?logo=openweathermap&logoColor=white)](https://openweathermap.org/)
+   [![SerpAPI](https://img.shields.io/badge/API-SerpAPI-1a73e8?logo=google&logoColor=white)](https://serpapi.com)
    [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)
    
    
