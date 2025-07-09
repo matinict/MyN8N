@@ -107,6 +107,63 @@ Extracts:
 
 ---
 
+```json
+{
+Dear Matin Rahman,
+
+Thank you for reaching out to TravelPOAi! We are delighted to assist
+you in planning your upcoming vacation to Dubai.
+
+We have reviewed your travel request and have prepared some initial
+options based on your preferences. Here is a summary of your plan so
+far:
+
+**Your Trip Details**
+*   **Departure:** Dhaka (DAC)
+*   **Destination:** Dubai (DXB)
+*   **Date:** August 15, 2025
+*   **Travellers:** 2
+*   **Preferences:** Luxury Suite, Halal food, wheelchair assistance.
+
+---
+
+### **Flight Options**
+Here are a few flight possibilities for your trip from Dhaka to Dubai:
+
+*   **Option 1:** US-Bangla Airlines (Economy) - 5h 15m - **$863**
+*   **Option 2:** US-Bangla Airlines (Economy) - 5h 10m - **$863**
+*   **Option 3:** Emirates (Economy) - 5h 0m - **$1,150**
+
+### **Luxury Hotel Options**
+Based on your preference for a luxury suite, we've selected a few
+highly-rated hotels for your consideration (prices are per night):
+
+*   **JW Marriott Marquis Hotel Dubai:** $90
+*   **Taj Dubai:** $126
+*   **Waldorf Astoria Dubai Palm Jumeirah:** $177
+*   **Anantara The Palm Dubai Resort:** $184
+*   **Address Beach Resort:** $209
+*   **Atlantis, The Palm:** $407
+
+---
+
+### **Next Steps**
+
+One of our travel specialists will contact you shortly via email or
+phone (+880171776441) to discuss these options in more detail. They
+will help you finalize your itinerary, confirm availability, and
+ensure all your special requests, including wheelchair assistance and
+Halal food arrangements, are taken care of.
+
+Thank you again for choosing TravelPOAi. We look forward to helping
+you create a fantastic and stress-free travel experience!
+
+Warm regards,
+
+**The TravelPOAi Team**
+}
+```
+
 ## 🚫 Tips
 
 - Ensure your SerpAPI and Gemini keys have enough quota.
