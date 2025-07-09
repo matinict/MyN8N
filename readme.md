@@ -16,14 +16,26 @@
    [![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-008CBA?logo=openweathermap&logoColor=white)](https://openweathermap.org/)
    [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)
    
-
-
    
    - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
    - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/B89q1Huaml8)
    - 💡 Voice-based AI assistant that extracts the city name from a call and responds with real-time weather using OpenWeatherMap and GPT-4o-mini.
    
+1. VapiTravelCall – AI Travel Assistant using n8n, Gemini, and SerpAPI
+
+   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)
+   [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+   [![vapiAi](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
+   [![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-008CBA?logo=openweathermap&logoColor=white)](https://openweathermap.org/)
+   [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)
+   
+   
+   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.json)  
+   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.md)  
+   - 🎥 **YouTube**: [Watch & Build]( )
+   - 💡 Voice-based AI assistant that is a smart AI-powered travel inquiry assistant using Vapi, n8n, Google Gemini, LangChain, and SerpAPI. It captures travel preferences via voice or form and generates a customized summary email..
      
 
 1. AskMyDocs – AI-Powered RAG Agent Using n8n, OpenAI & Qdrant Vector Store
