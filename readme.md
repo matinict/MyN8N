@@ -1,8 +1,9 @@
 
 # 🚀 AI Automation Projects 
 
-> 🔧 Built with n8n, OpenAI GPT, LangChain, and more – these automation workflows connect AI tools into seamless voice, chat, and data experiences.
-
+> 🔧 Built with n8n,
+> 🔧 ChatModel: OpenAI GPT, Gemini, Mistral, LangChain, and more –  
+> 🔧 DB: Pinecone, Qdrant
 ---
 
 ## 📋 Project Index
