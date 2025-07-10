@@ -1,6 +1,4 @@
 
-Here is a professional README.md for your **HotelBookingAirtable** n8n workflow:
-
 ```markdown
 # 🏨 HotelBookingAirtable – Hotel Room Booking Automation with n8n & Airtable
 
