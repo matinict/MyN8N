@@ -85,6 +85,21 @@
 
 
 
+1. ChatBasedCryptoAdvisor: Build Your Own AI-Powered Real-Time Crypto Price AI Advisor in n8n
+
+   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
+   [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+   ![CoinGecko](https://img.shields.io/badge/Data%20Source-CoinGecko-orange?logo=coingecko)
+   ![Coin Detection](https://img.shields.io/badge/Coin%20Detection-Enabled-brightgreen?style=flat&logo=bitcoin)
+
+
+   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.json)  
+   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.md)  
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/lIcxQPCH6Q0)
+   - 💡A dynamic, chat-based crypto advisor built in n8n using LangChain, CoinGecko API, and Google Gemini. This workflow listens for a user's message, extracts the mentioned cryptocurrency, fetches its real-time price and 24h change, and responds with Buy, Sell, or Hold recommendations based on price movement.
+
 
 
 
