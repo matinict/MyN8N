@@ -33,8 +33,8 @@
    [![SerpAPI](https://img.shields.io/badge/API-SerpAPI-1a73e8?logo=google&logoColor=white)](https://serpapi.com)
    [![Webhook](https://img.shields.io/badge/API-Webhook-ff9800?logo=zapier&logoColor=white)](https://en.wikipedia.org/wiki/Webhook)   
    
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.md)  
+   - 🌐 **Workflow**: [`VapiTravelCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.json)  
+   - 📄 **Documentation**: [`VapiTravelCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiTravelCall.md)  
    - 🎥 **YouTube**: [Watch & Build Comming soon.]( )
    - 💡 Voice-based AI assistant that is a smart AI-powered travel inquiry assistant using Vapi, n8n, Google Gemini, LangChain, and SerpAPI. It captures travel preferences via voice or form and generates a customized summary email..
      
@@ -50,10 +50,11 @@
    [![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented--Generation-purple)](https://www.langchain.com/use-cases/question-answering)
 
 
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/VapiWeatherCall.md)  
+   - 🌐 **Workflow**: [`AskMyDocs.json`](https://github.com/matinict/MyN8N/blob/main/AskMyDocs.json)  
+   - 📄 **Documentation**: [`AskMyDocs.md`](https://github.com/matinict/MyN8N/blob/main/AskMyDocs.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/dE1JZut2kvk)
    - 💡 Upload documents and ask questions via chat – using LangChain tools, OpenAI embeddings, and Qdrant vector search.
+   - 
   
 1. AiHrChatBot:  Build Your First RAG HR Assistant that AI Killed HR Using n8n, OpenAI & Pinecone
 
@@ -78,8 +79,8 @@
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
    [![Mistral OCR](https://img.shields.io/badge/OCR-Mistral%20AI-ff5e62?logo=brain&logoColor=white)](https://mistral.ai)
 
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.md)  
+   - 🌐 **Workflow**: [`MistralOCR.json`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.json)  
+   - 📄 **Documentation**: [`MistralOCR.md`](https://github.com/matinict/MyN8N/blob/main/MistralOCR.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/w3qodnA0sL0)
    - 💡 Upload documents the extraction and understanding of text from images and PDFs using Mistral OCR and Google Gemini, all inside an n8n workflow
 
@@ -94,11 +95,28 @@
    ![CoinGecko](https://img.shields.io/badge/Data%20Source-CoinGecko-orange?logo=coingecko)
    ![Coin Detection](https://img.shields.io/badge/Coin%20Detection-Enabled-brightgreen?style=flat&logo=bitcoin)
 
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.md)  
+   - 🌐 **Workflow**: [`ChatBasedCryptoAdvisor.json`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.json)  
+   - 📄 **Documentation**: [`ChatBasedCryptoAdvisor.md`](https://github.com/matinict/MyN8N/blob/main/ChatBasedCryptoAdvisor.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/lIcxQPCH6Q0)
    - 💡A dynamic, chat-based crypto advisor built in n8n using LangChain, CoinGecko API, and Google Gemini. This workflow listens for a user's message, extracts the mentioned cryptocurrency, fetches its real-time price and 24h change, and responds with Buy, Sell, or Hold recommendations based on price movement.
+  
+     
+1. DailyCryptoEmailBot:uild a Daily Crypto Email Bot with JS – Full Automation Guide!
 
+   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
+   [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+   ![CoinGecko](https://img.shields.io/badge/Data%20Source-CoinGecko-orange?logo=coingecko)
+   ![Coin Detection](https://img.shields.io/badge/Coin%20Detection-Enabled-brightgreen?style=flat&logo=bitcoin)
+
+   - 🌐 **Workflow**: [`DailyCryptoEmailBot.json`](https://github.com/matinict/MyN8N/blob/main/DailyCryptoEmailBot.json)  
+   - 📄 **Documentation**: [`DailyCryptoEmailBot.md`](https://github.com/matinict/MyN8N/blob/main/DailyCryptoEmailBot.md)  
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/Sr6RO-bFk7Q)
+   - 💡A dynamic, chat-based crypto advisor built in n8n using LangChain, CoinGecko API, and Google Gemini. This workflow listens for a user's message, extracts the mentioned cryptocurrency, fetches its real-time price and 24h change, and responds with Buy, Sell, or Hold recommendations based on price movement.
+
+
+     
 
 1. HotelBookingAirtable – Hotel Room Booking Automation with n8n & Airtable
 
@@ -108,8 +126,8 @@
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
    [![Airtable API](https://img.shields.io/badge/Airtable-API-blue?logo=airtable&style=for-the-badge)](https://airtable.com/api)
 
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/HotelBookingAirtable.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/HotelBookingAirtable.md)  
+   - 🌐 **Workflow**: [`HotelBookingAirtable.json`](https://github.com/matinict/MyN8N/blob/main/HotelBookingAirtable.json)  
+   - 📄 **Documentation**: [`HotelBookingAirtable.md`](https://github.com/matinict/MyN8N/blob/main/HotelBookingAirtable.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/-U6Eztwru-E)
    - 💡 This workflow lets you capture hotel room booking requests via a simple **form** and saves the data into an **Airtable** base for easy management.
 
@@ -123,8 +141,8 @@
    [![Tally Workspace](https://img.shields.io/badge/Open%20Tally%20Workspace-Click%20Here-yellowgreen)](https://tally.so/workspaces/3xYKdr)
 
 
-   - 🌐 **Workflow**: [`VapiWeatherCall.json`](https://github.com/matinict/MyN8N/blob/main/WebhookHTTPPostTallyForm.json)  
-   - 📄 **Documentation**: [`VapiWeatherCall.md`](https://github.com/matinict/MyN8N/blob/main/WebhookHTTPPostTallyForm.md)  
+   - 🌐 **Workflow**: [`WebhookHTTPPostTallyForm.json`](https://github.com/matinict/MyN8N/blob/main/WebhookHTTPPostTallyForm.json)  
+   - 📄 **Documentation**: [`WebhookHTTPPostTallyForm.md`](https://github.com/matinict/MyN8N/blob/main/WebhookHTTPPostTallyForm.md)  
    - 🎥 **YouTube**: [Watch & Build](https://youtu.be/icdihJTEiio)
    - 💡 Workflow captures form submissions via a webhook and forwards specific form data to an external HTTP endpoint.
 
