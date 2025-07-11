@@ -1,7 +1,7 @@
 
 # 🚀 AI Automation Projects 
 
-> 🔧 Built with n8n,
+> 🔧 Built with n8n  
 > 🔧 ChatModel: OpenAI GPT, Gemini, Mistral, LangChain, and more –  
 > 🔧 DB: Pinecone, Qdrant
 ---
