@@ -148,14 +148,14 @@
 
 
 
-1. TranscribingAudioToText –TallyForm & catching web requests in n8n
+1. TranscribingAudioToText –Audio to Text with Timestamps Using n8n + OpenAI
 
    [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)
    [![OpenAI Whisper](https://img.shields.io/badge/Transcription-Whisper–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)
    [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
-   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://www.youtube.com/watch?v=zj1ZWO50wbY)
+   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/zj1ZWO50wbY)
 
    - 🌐 **Workflow**: [`WebhookHTTPPostTallyForm.json`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioToText.json)  
    - 📄 **Documentation**: [`WebhookHTTPPostTallyForm.md`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioToText.md)  
