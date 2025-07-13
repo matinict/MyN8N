@@ -1,5 +1,4 @@
 
-```markdown
 # 🎙️ TranscribingAudioToText – n8n Audio Transcription Workflow
 
 [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
