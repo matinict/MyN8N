@@ -10,7 +10,7 @@
 
 1. VapiWeatherCall – AI-Powered Weather Voice Assistant
  
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)
    [![vapiAi](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
@@ -26,7 +26,7 @@
    
 1. VapiTravelCall – AI Travel Assistant using n8n, Gemini, and SerpAPI
    
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io)
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/)
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
    [![vapiAi](https://img.shields.io/badge/Live%20Demo-Vapi%20Dashboard-ff9900?logo=voice-over)](https://dashboard.vapi.ai/assistants/36e273c4-1498-40ae-b07a-db1b4ecd27f1#start-speaking)
@@ -43,7 +43,7 @@
 
 1. AskMyDocs – AI-Powered RAG Agent Using n8n, OpenAI & Qdrant Vector Store
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Qdrant](https://img.shields.io/badge/VectorDB-Qdrant-4E75D4?logo=qdrant)](https://qdrant.tech/)
@@ -58,7 +58,7 @@
   
 1. AiHrChatBot:  Build Your First RAG HR Assistant that AI Killed HR Using n8n, OpenAI & Pinecone
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Pinecone](https://img.shields.io/badge/VectorDB-Pinecone-039389?logo=pinecone&logoColor=white)](https://www.pinecone.io/)
@@ -73,7 +73,7 @@
 
 1. MistralOCR: Build Your Own AI-Powered Mistral OCR Integration in n8n
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -88,7 +88,7 @@
 
 1. ChatBasedCryptoAdvisor: Build Your Own AI-Powered Real-Time Crypto Price AI Advisor in n8n
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -103,7 +103,7 @@
      
 1. DailyCryptoEmailBot:uild a Daily Crypto Email Bot with JS – Full Automation Guide!
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -120,7 +120,7 @@
 
 1. HotelBookingAirtable – Hotel Room Booking Automation with n8n & Airtable
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -133,7 +133,7 @@
 
 1. WebhookHTTPPostTallyForm –TallyForm & catching web requests in n8n
 
-   [![n8n](https://img.shields.io/badge/Built%20With-n8n-2087c6?logo=n8n&logoColor=white)](https://n8n.io) 
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
    [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/) 
    [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
@@ -147,6 +147,20 @@
    - 💡 Workflow captures form submissions via a webhook and forwards specific form data to an external HTTP endpoint.
 
 
+
+1. TranscribingAudioToText –TallyForm & catching web requests in n8n
+
+   [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
+   [![LangChain](https://img.shields.io/badge/AI-LangChain-blue)](https://www.langchain.com/) 
+   [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)   
+   [![OpenAI Whisper](https://img.shields.io/badge/Transcription-Whisper–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)
+   [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
+   [![YouTube Demo](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://www.youtube.com/watch?v=zj1ZWO50wbY)
+
+   - 🌐 **Workflow**: [`WebhookHTTPPostTallyForm.json`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioToText.json)  
+   - 📄 **Documentation**: [`WebhookHTTPPostTallyForm.md`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioToText.md)  
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/zj1ZWO50wbY)
+   - 💡 Workflow: Automate audio transcription using Google Drive and OpenAI Whisper, then save the text output back to Drive—all powered by n8n.
 
 
 
