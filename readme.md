@@ -172,7 +172,7 @@
    [![OpenAI](https://img.shields.io/badge/OpenAI-Embedding--GPT--4-412991?logo=openai)](https://platform.openai.com/)
    [![OpenAI Whisper](https://img.shields.io/badge/Transcription-Whisper–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)
    [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
-   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/zj1ZWO50wbY)
+   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/OiyJKhrVYZs)
 
    - 🌐 **Workflow**: [`TranscribingAudioTranslateToGDrive.json`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioTranslateToGDrive.json)  
    - 📄 **Documentation**: [`TranscribingAudioTranslateToGDrive.md`](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioTranslateToGDrive.md)  
