@@ -1,6 +1,6 @@
 # TranscribingAudioTranslateToGDrive
 
-### `TranscribingAudioTranslateToGDrive` Workflow
+### `TranscribingAudioTranslateToGDrive` Transcription, Translation and Voice Generator with n8n & OpenAI
 
 
 #### **Workflow Description**
