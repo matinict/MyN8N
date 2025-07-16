@@ -1,85 +1,108 @@
-# TranscribingAudioTranslateToGDrive
+# 🎙️ TranscribingAudioTranslateToGDrive
 
-### `TranscribingAudioTranslateToGDrive` Transcription, Translation and Voice Generator with n8n & OpenAI
+This n8n workflow takes an **audio file from Google Drive**, transcribes it using **OpenAI Whisper**, translates the transcription to **Bengali**, converts the translation back to **speech**, and finally **uploads the translated audio** back to Google Drive.
 
-
-#### **Workflow Description**
-
-This n8n workflow is designed to handle an audio file from Google Drive. It performs the following steps:
-1.  **Downloads** an audio file from a specified Google Drive folder.
-2.  **Transcribes** the audio content into text using OpenAI's transcription service.
-3.  **Translates** the transcribed text to Bangla using a LangChain LLM chain.
-4.  **Converts** the translated text back into an audio file using OpenAI's text-to-speech service.
-5.  **Uploads** the new, translated audio file to a different folder in Google Drive.
-
-#### **Technologies Used**
-
-* **n8n:** Workflow automation platform.
-* **Google Drive:** Used for storing and retrieving the audio files.
-* **OpenAI:** Provides audio transcription and text-to-speech services.
-* **LangChain:** Used to manage the language model chain for text translation.
-
-#### **Workflow Steps**
-
-The workflow is a linear process with the following nodes:
-
-* **When clicking ‘Test workflow’:** The starting point of the workflow.
-* **Google Drive:** Downloads the audio file `TranscribingEn.mp3`.
-* **OpenAI:** Transcribes the audio file into text.
-* **Basic LLM Chain:** Translates the transcribed text to Bangla. This node uses the `OpenAI Chat Model` to perform the translation.
-* **OpenAI1:** Converts the translated Bangla text back into an audio file.
-* **Google Drive1:** Uploads the new audio file with a name prefixed with `bn_` to the `audio` folder in Google Drive.
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-2088FF?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io)
+[![Powered by OpenAI](https://img.shields.io/badge/Powered%20by-OpenAI-000000?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com)
+[![Uses Google Drive API](https://img.shields.io/badge/Uses-Google%20Drive-34A853?style=for-the-badge&logo=google-drive&logoColor=white)](https://developers.google.com/drive)
+[![YouTube](https://img.shields.io/badge/Watch%20Tutorial-YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=OiyJKhrVYZs)
 
 
-In this step-by-step tutorial, learn how to create a powerful AI workflow using n8n, OpenAI, and Google Drive. This automation can:
+> 🔁 A full cycle: **Audio ➝ Text ➝ Translate ➝ Audio ➝ Drive**
 
- * Transcribe audio from a Google Drive file
- * Summarize the transcription with OpenAI
- * Translate the summary into Japanese
- * Generate an AI voice from the translated text
- * Upload the final audio file back to Google Drive
+---
 
- This is an ideal no-code workflow for content creators, educators, YouTubers, or developers working with multilingual voice automation.
+## 📌 Features
 
+- ✅ Download MP3 from Google Drive
+- ✅ Transcribe with OpenAI Whisper
+- ✅ Translate text to Bengali using GPT
+- ✅ Convert Bengali text to voice using OpenAI TTS
+- ✅ Save final audio file back to Google Drive
 
-00:00 - Intro: Transcribe + Translate + Save Audio
-00:30 - Workflow Overview
-01:00 - Step 1: Trigger & Download Audio from Google Drive
-01:30 - Step 2: Transcribe Audio to Text using OpenAI Whisper
-02:10 - Step 3: Translate Text to Bengali using GPT
-02:50 - Step 4: Convert Bengali Text to Speech (Text-to-Audio)
-03:30 - Step 5: Upload Translated Audio to Google Drive
-04:00 - Setting Up OpenAI & Google Drive Credentials
-05:00 - Final Workflow Test (Start to Finish)
-06:30 - GitHub Download & Support Info
-07:00 - Outro & Subscribe to @PlayOwnAi
+---
 
+## 🛠 Prerequisites
 
- What you’ll build:
+- [n8n](https://n8n.io) installed and running
+- OpenAI account + API key
+- Google Drive credentials with access to source/destination folders
 
- * Google Drive file download and upload
- * OpenAI Whisper transcription
- * Summarization using GPT-based models
- * Translation via prompt-based AI interaction
- * Text-to-speech voice generation
- * Full automation using n8n (open source)
+---
 
- Access the full n8n workflow JSON and clone it to get started fast.
+## ⚙️ Workflow Overview
 
- Source Code:
- [https://github.com/matinict/MyN8N/blob/main/TranscribingAudioTranslateToGDrive.json](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioTranslateToGDrive.json)
+1. **Manual Trigger**  
+   Starts the workflow manually for testing.
 
- Required Tools:
+2. **Google Drive (Download)**  
+   Downloads the original `.mp3` audio file using its File ID.
 
- * n8n (self-hosted or cloud)
- * Google Drive API Access
- * OpenAI API Key (Whisper + Chat + TTS)
- * Japanese language translation via prompt
+3. **OpenAI Whisper**  
+   Transcribes the audio to English text.
 
- Tags:
- n8n tutorial, openai workflow, audio transcription automation, summarize audio with gpt, translate with ai, generate voice with openai, n8n google drive integration, openai whisper n8n, ai-powered automation, no code audio pipeline, openai tts n8n
+4. **OpenAI Chat Model**  
+   Translates the English text into Bengali using GPT.
 
-#### **Example Video**
+5. **OpenAI Text-to-Speech (TTS)**  
+   Converts the Bengali translation into audio (Nova voice).
 
-You can learn more about similar concepts by watching this video:
-[https://youtu.be/OiyJKhrVYZs](https://youtu.be/OiyJKhrVYZs)
+6. **Google Drive (Upload)**  
+   Uploads the final Bengali audio to a selected Drive folder.
+
+---
+
+## 🔐 Credentials Setup
+
+### Google Drive OAuth2
+- Go to `Credentials` in n8n
+- Add new `Google Drive OAuth2 API`
+- Grant required Drive permissions
+
+### OpenAI API
+- Get your API Key from [platform.openai.com](https://platform.openai.com/account/api-keys)
+- Create credential in n8n under **OpenAI API**
+
+---
+
+## 📁 File Structure
+
+| Node               | Function                                      |
+|--------------------|-----------------------------------------------|
+| Manual Trigger     | Starts the workflow                           |
+| Google Drive       | Downloads the original `.mp3`                 |
+| OpenAI Whisper     | Transcribes audio to English text             |
+| GPT Chat Model     | Translates text to Bengali                    |
+| TTS Node           | Converts translated text to audio             |
+| Google Drive (2nd) | Uploads final `.mp3` to target folder         |
+
+---
+
+## 📽 Demo Video
+
+🎬 [Watch on YouTube](https://www.youtube.com/watch?v=OiyJKhrVYZs)  
+🧠 Channel: [@PlayOwnAi](https://www.youtube.com/@PlayOwnAi)
+
+---
+
+## 📦 Download Workflow
+
+You can download the full workflow JSON here:
+
+👉 [Download from GitHub](https://github.com/matinict/MyN8N/blob/main/TranscribingAudioTranslateToGDrive.json)
+
+---
+
+## ❓ Need Help?
+
+- Comment on the [YouTube video](https://www.youtube.com/watch?v=OiyJKhrVYZs)
+- Or raise an issue in the [GitHub repo](https://github.com/matinict/MyN8N)
+
+---
+
+## 📌 Tags
+
+`n8n` `openai` `gpt` `whisper` `google drive` `bengali translation` `text-to-speech` `audio transcription` `workflow automation`
+
+---
+
