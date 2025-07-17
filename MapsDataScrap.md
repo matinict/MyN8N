@@ -11,7 +11,7 @@ Scrapes Google Maps for real estate companies in Dubai (Bur Dubai, Karama, Satwa
 
 ---
 
-## 🚀 Workflow Overview
+## 🚀 Workflow Overview   
 
 1. **Manual Trigger** – Start by running the workflow manually via “Execute workflow”.
 2. **Set Keywords** – Defines search keywords for different Dubai areas.
