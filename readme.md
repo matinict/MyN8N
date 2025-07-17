@@ -186,12 +186,12 @@
    [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
    [![SerpAPI](https://img.shields.io/badge/API-SerpAPI-blue?logo=serpapi)](https://serpapi.com)
    [![Google Sheets](https://img.shields.io/badge/Storage-Google%20Sheets-green?logo=google-sheets)](https://www.google.com/sheets)
-   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/OiyJKhrVYZs)
+   [![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/TLf23amwQdw)
    
 
    - 🌐 **Workflow**: [`MapsDataScrap.json`](https://github.com/matinict/MyN8N/blob/main/MapsDataScrap.json)  
    - 📄 **Documentation**: [`TranscribingAudioTranslateToGDrive.md`](https://github.com/matinict/MyN8N/blob/main/MapsDataScrap.md)  
-   - 🎥 **YouTube**: [Watch & Build Soon...](https://youtu.be/OiyJKhrVYZs)
+   - 🎥 **YouTube**: [Watch & Build](https://youtu.be/TLf23amwQdw)
    - 💡 Workflow: Scrapes Google Maps for real estate companies in Dubai (Bur Dubai, Karama, Satwa), extracts contact details, formats phone numbers, and saves them into a Google Sheet using n8n and SerpAPI.
 
 
