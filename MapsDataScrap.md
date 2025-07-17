@@ -2,10 +2,10 @@
 
 # 🗺️ MapsDataScrap – Automated Lead Scraper for Real Estate in Dubai
 
-[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)  
-[![SerpAPI](https://img.shields.io/badge/API-SerpAPI-blue?logo=serpapi)](https://serpapi.com)  
-[![Google Sheets](https://img.shields.io/badge/Storage-Google%20Sheets-green?logo=google-sheets)](https://www.google.com/sheets)  
-[![Status](https://img.shields.io/badge/Status-Inactive-lightgrey)](#)
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
+[![SerpAPI](https://img.shields.io/badge/API-SerpAPI-blue?logo=serpapi)](https://serpapi.com)
+[![Google Sheets](https://img.shields.io/badge/Storage-Google%20Sheets-green?logo=google-sheets)](https://www.google.com/sheets)
+
 
 Scrapes Google Maps for real estate companies in Dubai (Bur Dubai, Karama, Satwa), extracts contact details, formats phone numbers, and saves them into a Google Sheet using **n8n** and **SerpAPI**.
 
