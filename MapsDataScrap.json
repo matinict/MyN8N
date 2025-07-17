@@ -1,0 +1,308 @@
+{
+  "name": "MapsDataScrap",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -100
+      ],
+      "id": "a94062eb-8590-4457-9c22-878ab4041129",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      keyword: \"Real Estate Companies Bur Dubai\"\n    }\n  },\n\n  {\n    json: {\n      keyword: \"Real Estate Companies Karama\"\n    }\n  },\n\n{\n    json: {\n      keyword: \"Real Estate Companies Satwa\"\n    }\n  }\n\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        -100
+      ],
+      "id": "b13acdfd-09e0-4655-95d9-b104209d76ff",
+      "name": "Set Keywords RE Companies Dubai (Maps)"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -500,
+        -100
+      ],
+      "id": "5eb97a04-7b91-40f7-ae48-f63f41caf7cf",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "url": "=https://serpapi.com/search.json?q={{$json[\"keyword\"]}}&engine=google_maps&type=search&api_key=99bf2d165fe1ab5f650d3fbda681ab0c431dae9a103808c7195a1b52fbf181a6",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        -80
+      ],
+      "id": "c494cf21-08f5-4a49-93c5-0acdfcfe919f",
+      "name": "Search Google Maps (SerpAPI)2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().flatMap(item => {\n  const results = item.json.local_results || [];\n  return results\n    .filter(r => r.phone && r.phone.trim() !== '') // Exclude items with empty or whitespace-only phone\n    .map(r => ({\n      json: {\n        name: r.title,\n        phone: r.phone || '',\n        address: r.address || '',\n        link: r.website || '',\n        location: r.gps_coordinates ? `${r.gps_coordinates.latitude}, ${r.gps_coordinates.longitude}` : '',\n        keyword: item.json.keyword\n      }\n    }));\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        -80
+      ],
+      "id": "84b8c01a-c4f6-423f-8b68-49c4db33b2f9",
+      "name": "Extract Results"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const original = item.json.phone || \"\";\n  const cleaned = original.replace(/\\s+/g, \"\"); // remove all spaces\n  item.json.PhoneFormatted = `'${cleaned.startsWith(\"+\") ? cleaned : \"+\" + cleaned}`; // add single quote at start\n  return item;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -80
+      ],
+      "id": "e8e0afbf-974f-4478-a75d-9935be2b8331",
+      "name": "FormatTel"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1JAfrSkU1u6XgN6YT70l9DHNj5dFAq9U4UfFqJ2omDds",
+          "mode": "list",
+          "cachedResultName": "MapsDataScrape",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JAfrSkU1u6XgN6YT70l9DHNj5dFAq9U4UfFqJ2omDds/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "RECompaniesScraping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JAfrSkU1u6XgN6YT70l9DHNj5dFAq9U4UfFqJ2omDds/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PhoneFormatted": "={{ $json.PhoneFormatted }}",
+            "name": "={{ $json.name }}",
+            "address": "={{ $json.address }}",
+            "link": "={{ $json.link }}",
+            "location": "={{ $json.location }}"
+          },
+          "matchingColumns": [
+            "PhoneFormatted"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "PhoneFormatted",
+              "displayName": "PhoneFormatted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        180,
+        -80
+      ],
+      "id": "5985b4e9-f334-4c70-b3ea-bcb1fc367677",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "LptSlhgxROD6no8J",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        -80
+      ],
+      "id": "f11a5622-6bb1-4d06-a685-3684825c7239",
+      "name": "Wait",
+      "webhookId": "3e3072a7-ca4b-4992-a1cf-b9c5cb5c259d"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Keywords RE Companies Dubai (Maps)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Keywords RE Companies Dubai (Maps)": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Search Google Maps (SerpAPI)2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Google Maps (SerpAPI)2": {
+      "main": [
+        [
+          {
+            "node": "Extract Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Results": {
+      "main": [
+        [
+          {
+            "node": "FormatTel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FormatTel": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "22b7fe28-7dcc-47aa-91a9-15f09331ac78",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dd25159936b8b7f665b3a47107b5fe3ccf39e193e01b31a1ad6ff5635f205537"
+  },
+  "id": "dAhXGVk5vuOxShjO",
+  "tags": []
+}
