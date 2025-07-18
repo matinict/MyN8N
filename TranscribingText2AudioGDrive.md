@@ -3,6 +3,12 @@
 [![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
 [![OpenAI TTS](https://img.shields.io/badge/Audio%20Generated–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)
 [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
+[![Watch & Build](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)]([https://youtu.be/KnBeZg3NhE4](https://youtu.be/KnBeZg3NhE4))
+
+- 🌐 **Workflow**: [`TranscribingText2AudioGDrive.json`](https://github.com/matinict/MyN8N/blob/main/TranscribingText2AudioGDrive.json)  
+- 📄 **Documentation**: [`TranscribingText2AudioGDrive.md`](https://github.com/matinict/MyN8N/blob/main/TranscribingText2AudioGDrive.md)  
+- 🎥 **YouTube**: [Watch & Build](https://youtu.be/KnBeZg3NhE4)
+- 💡 Workflow: Automate audio transcription using Google Drive and OpenAI Whisper, then save the text output back to Drive—all powered by n8n.
 
 Convert `.txt` documents in a Drive folder into `.mp3` audio files automatically using **n8n**, **Google Drive**, and **OpenAI TTS**.
 
