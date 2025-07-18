@@ -1,7 +1,7 @@
 # 🎧 TranscribingText2AudioGDrive – AI Text-to-Audio Converter for Drive
 
-[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)  
-[![OpenAI TTS](https://img.shields.io/badge/Audio%20Generated–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)  
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
+[![OpenAI TTS](https://img.shields.io/badge/Audio%20Generated–OpenAI-lightgrey?logo=openai)](https://platform.openai.com)
 [![Google Drive](https://img.shields.io/badge/Storage-Google%20Drive-blue?logo=google-drive)](https://drive.google.com)
 
 Convert `.txt` documents in a Drive folder into `.mp3` audio files automatically using **n8n**, **Google Drive**, and **OpenAI TTS**.
