@@ -1,7 +1,7 @@
 # LinkedinPost
 ## 📣 LinkedInPost – Automated LinkedIn Organization Posting
 
-[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)  
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
 [![LinkedIn](https://img.shields.io/badge/Platform-LinkedIn-blue?logo=linkedin)](https://www.linkedin.com)
 
 This workflow lets you automatically post updates to a LinkedIn **Organization Page** via n8n with a manual trigger.
