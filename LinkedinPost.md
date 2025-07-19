@@ -39,6 +39,42 @@ This workflow lets you automatically post updates to a LinkedIn **Organization P
 
 ---
 
+
+# LinkedinPost – n8n Workflow
+
+Automate LinkedIn posts using n8n.
+
+## Workflow Overview
+
+1. **Manual Trigger**  
+   Start the workflow in n8n.
+
+2. **Create a LinkedIn Post**  
+   - **postAs:** organization  
+   - **organization:** 107121112  
+   - **text:** Content about "Sora AI Alternatives..."
+
+## Setup Instructions
+
+1. Clone this repo.
+2. Import `LinkedinPost.json` into n8n.
+3. Configure your LinkedIn credentials:
+   - In n8n, go to **Credentials** → **LinkedIn OAuth2**.
+4. Save and **activate** the workflow.
+5. Click **Execute workflow** or schedule it via Cron.
+
+## Customization
+
+- Change `postAs` from `"organization"` to `"person"` if needed.
+- Swap the text content under `text` in the LinkedIn node.
+- Schedule regular posts using n8n’s Cron trigger.
+
+## License
+
+[MIT License](LICENSE)
+
+
+
 ## 💡 Tips
 
 - Great for scheduling team updates, blog post announcements, product launches, and event invites.
