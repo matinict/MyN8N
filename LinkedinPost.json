@@ -1,0 +1,63 @@
+{
+  "name": "LinkedinPost",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -64
+      ],
+      "id": "e25e8e30-2ed2-4b02-831d-fcf9f18002fa",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "postAs": "organization",
+        "organization": "107121112",
+        "text": "Sora AI Alternatives (Text-to-Video Generators) Top Sora AI Alternatives (Text-to-Video Generators) 🟨 1. Runway ML (Gen-2 & Gen-3) Type: Text-to-video, image-to-video  Key Features:  Up to 18 seconds  Inpainting, motion brush, camera controls  More stylized/artistic compared to Sora  Best For: Filmmakers, artists, concept animation",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -64
+      ],
+      "id": "d654fbcb-c3d0-4126-9a60-8111691f503c",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "AES6VLgYd9yoQNnA",
+          "name": "LinkedIn account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f8207789-b884-446c-b613-da64826d61c6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3d3e96848556ce43b37eb7d53c56487e27a04da5445c3add2ecb5e1f4d5d98c6"
+  },
+  "id": "QYvUjNMZm89pOhsL",
+  "tags": []
+}
