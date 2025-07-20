@@ -1,8 +1,8 @@
 # WebLinkScraping
 ## 🕸️ WebLinkScraping – Structured Website Data Extractor
 
-[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)  
-[![OpenAI](https://img.shields.io/badge/AI‑Model-OpenAI%20GPT‑4o‑Mini-lightgrey?logo=openai)](https://platform.openai.com)  
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
+[![OpenAI](https://img.shields.io/badge/AI‑Model-OpenAI%20GPT‑4o‑Mini-lightgrey?logo=openai)](https://platform.openai.com)
 [![No-Code](https://img.shields.io/badge/No‑Code‑Automation-green)](#)
 
 Automatically fetches a website’s HTML, converts it to Markdown, extracts all outbound links, summarizes content, and outputs structured JSON using GPT-4o-Mini.
