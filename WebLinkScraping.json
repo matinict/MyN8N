@@ -1,0 +1,132 @@
+{
+  "name": "WebLinkScraping",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        -176
+      ],
+      "id": "c4039364-d249-4644-952c-9a725a63c45e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://tempurmattress-exdisplay.co.uk",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -752,
+        -176
+      ],
+      "id": "4731647d-dc7c-4e62-a795-adb5db4a5701",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "html": "=  {{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -176
+      ],
+      "id": "fdb26128-eef0-4116-9ab4-bfd7ab303448",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful, intelligent web scraping assistant.",
+              "role": "assistant"
+            },
+            {
+              "content": "Your task is to take the raw Markdown of a website, and convert it into structured data. Use the following format:\n{\n  \"Links\": [\"an\", \"array\", \"of\", \"absolute\", \"urls\"],\n  \"plainTextWebsiteCopy\": \"a long string containing just the text of the site, no formatting\",\n  \"oneLineSummary\": \"brief summarization of what the site is about\"\n}\n\nYour website URL, for the relative absolute conversions, is https://tempurmattress-exdisplay.co.uk\n"
+            },
+            {
+              "content": "={{ $json.data }}"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -368,
+        -176
+      ],
+      "id": "5c6b4fef-668d-4c7f-939d-92a61bef0b7c",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "QYPWVWUX5XjoDbhh",
+          "name": "POAiOpen"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "66a6a4eb-e950-407b-82c5-878eb2e3ee4f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3d3e96848556ce43b37eb7d53c56487e27a04da5445c3add2ecb5e1f4d5d98c6"
+  },
+  "id": "x3t0VgGOfUdTqRoQ",
+  "tags": []
+}
