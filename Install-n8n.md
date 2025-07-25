@@ -98,10 +98,23 @@ n8n is an open-source workflow automation tool
       rm -rf ~/.nvm
 
 
+## Ngrok: Install ngrok Local Machine
 
+      wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-stable-linux-amd64.zip
+      unzip ngrok-stable-linux-amd64.zip
+      sudo mv ngrok /usr/local/bin      
+      ngrok version    
+      
+      ngrok config add-authtoken 30LtkkFGtTVD6hTSlasRFahVbez_GyYV86bbbat8szsCdE2G
+      ngrok http http://localhost:8080
+      ngrok http http://localhost:5678            
+      
+      https://df613554f76e.ngrok-free.app/webhook-name
 
+      
+      
 ## Problem 
-
+      
 ## Problem 1- Permissions 0664 for n8n settings
      chmod 600 /home/matin/.n8n/config
  
