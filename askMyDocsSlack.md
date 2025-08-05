@@ -1,10 +1,10 @@
 # 🤖 AskMyDocsSlack – AI-Powered Slack Document Q&A Bot
 
-[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)  
-[![Qdrant Vector DB](https://img.shields.io/badge/Vector%20Store‑Qdrant-blue?logo=qdrant)](https://qdrant.tech)  
-[![OpenAI Embeddings](https://img.shields.io/badge/Embeddings‑Model-ada‑002-orange?logo=openai)](https://platform.openai.com)  
-[![GPT‑4o‑Mini](https://img.shields.io/badge/Chat‑Model‑GPT‑4o‑Mini-lightgrey?logo=openai)](https://platform.openai.com)  
-[![Slack](https://img.shields.io/badge/Slack‑Integration‑Enabled‑slack-blue)](https://slack.com)  
+[![Built with n8n](https://img.shields.io/badge/Built%20with-n8n-208ec6?logo=n8n&logoColor=white)](https://n8n.io)
+[![Qdrant Vector DB](https://img.shields.io/badge/Vector%20Store‑Qdrant-blue?logo=qdrant)](https://qdrant.tech)
+[![OpenAI Embeddings](https://img.shields.io/badge/Embeddings‑Model-ada‑002-orange?logo=openai)](https://platform.openai.com)
+[![GPT‑4o‑Mini](https://img.shields.io/badge/Chat‑Model‑GPT‑4o‑Mini-lightgrey?logo=openai)](https://platform.openai.com)
+[![Slack](https://img.shields.io/badge/Slack‑Integration‑Enabled‑slack-blue)](https://slack.com)
 
 AskMyDocsSlack lets you **upload documents to Qdrant** and **query them in Slack**, using **OpenAI embeddings**, **GPT‑4o‑mini**, and n8n's AI trigger flow.
 
