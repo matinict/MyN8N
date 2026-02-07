@@ -1,0 +1,230 @@
+{
+  "name": "SocialMaster_with_YouTube",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d7a1e584-26ba-427a-a705-7fd3f9dc9b2c",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1152,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cap",
+              "name": "text",
+              "value": "Check out my latest Social Share automation! 🚀 #test  #cloud",
+              "type": "string"
+            },
+            {
+              "id": "img",
+              "name": "url",
+              "value": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4631d02a-f78d-4387-8da6-972e304d185c",
+      "name": "1. Prepare Content",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v17.0",
+        "node": "=/{{$node[\"1. Prepare Content\"].json[\"2411463485664759\"]}}/feed",
+        "edge": "={{ $json.text }}",
+        "options": {}
+      },
+      "id": "55cfedf8-8d10-4ba2-9980-8e898dccb24c",
+      "name": "Facebook Page",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -1072,
+        896
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "fucDk63F1sDA7AIY",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.text }}",
+        "additionalFields": {}
+      },
+      "id": "0c9ac1f7-25fb-4b9a-90d9-c8025a4fc400",
+      "name": "X (Twitter)",
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        288
+      ],
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "FmLhPqy1bpkwe6Ls",
+          "name": "X account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.threads.net/v1.0/me/threads",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "166cedb3-05eb-42b4-966e-6f9d80c864a2",
+      "name": "Threads API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -752,
+        848
+      ]
+    },
+    {
+      "parameters": {
+        "postAs": "organization",
+        "organization": "107121112",
+        "text": "={{ $json.text }}",
+        "additionalFields": {}
+      },
+      "id": "f66ee72f-2d9b-4b8a-b661-c0c7c39dbfbd",
+      "name": "LinkedIn",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        112
+      ],
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "IlSIlJz45Kkqz0g4",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/youtube/v3/commentThreads",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "auth0ManagementApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"snippet\": { \"channelId\": \"YOUR_CHANNEL_ID_HERE\", \"topLevelComment\": { \"snippet\": { \"textOriginal\": \"{{ $json.text }}\" } } } }",
+        "options": {}
+      },
+      "id": "661156f4-eae7-482f-8814-ea9808a2c69e",
+      "name": "YouTube Community",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -432,
+        816
+      ],
+      "credentials": {
+        "asanaOAuth2Api": {
+          "id": "002LNbEYQJ0jEfxa",
+          "name": "Asana account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=GoogleDevelopers&key=AIzaSyBcD_KuosnEgk65k3C8-BZxK05hkppnbYs",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -560,
+        448
+      ],
+      "name": "Test YouTube API",
+      "id": "35971c5e-7691-4610-80ae-6758174ad0d4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "1. Prepare Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Prepare Content": {
+      "main": [
+        [
+          {
+            "node": "Facebook Page",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "X (Twitter)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Threads API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "YouTube Community",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Test YouTube API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "592e9d5c-a57a-4d78-bcc3-dcebe77097da",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7f80fb2685f73d2322d4df47fdca799b0e98527a810dc58139f1b260ceeb648d"
+  },
+  "id": "sRU5TvFfq_t1qK_C904YP",
+  "tags": []
+}
