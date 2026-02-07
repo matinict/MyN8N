@@ -151,7 +151,7 @@
     },
     {
       "parameters": {
-        "url": "https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=GoogleDevelopers&key=AIzaSyBcD_KuosnEgk65k3C8-BZxK05hkppnbYs",
+        "url": "https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=GoogleDevelopers&key=AIzaxxxx",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -161,7 +161,7 @@
         448
       ],
       "name": "Test YouTube API",
-      "id": "35971c5e-7691-4610-80ae-6758174ad0d4"
+      "id": "35971c5e-7691-4610-80ae-xxxx"
     }
   ],
   "pinData": {},
